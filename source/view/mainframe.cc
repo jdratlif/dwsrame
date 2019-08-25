@@ -1,6 +1,6 @@
 /*
  * dwsrame - Dragon Warrior SRAM Editor
- * Copyright (C) 2006-2007 emuWorks
+ * Copyright (C) 2006-2008 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of dwsrame.
@@ -19,7 +19,7 @@
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: mainframe.cc,v 1.15 2007/02/18 07:31:01 technoplaza Exp $
+// $Id: mainframe.cc,v 1.18 2008/12/15 22:48:11 jdratlif Exp $
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
@@ -362,7 +362,7 @@ void MainFrame::onFileMenuUpdate(wxUpdateUIEvent &event) {
 void MainFrame::onFileOpen(wxCommandEvent &) {
     wxFileDialog dlg(this, wxT("Select a Dragon Warrior (NES) SRAM file"),
                      wxEmptyString, wxEmptyString,
-                     wxT("SRAM Files (*.sav)|*.sav"), wxOPEN);
+                     wxT("SRAM Files (*.sav)|*.sav"), wxFD_OPEN);
                      
     if (dlg.ShowModal() == wxID_OK) {
         openSRAM(dlg.GetPath());
@@ -373,7 +373,7 @@ void MainFrame::onFileSaveAs(wxCommandEvent &) {
     wxFileDialog dlg(this, wxT("Select a filename"),
                      wxEmptyString, wxEmptyString,
                      wxT("SRAM Files (*.sav)|*.sav"),
-                     wxSAVE | wxOVERWRITE_PROMPT);
+                     wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
     
     if (dlg.ShowModal() == wxID_OK) {
         sramFile = dlg.GetPath();
@@ -443,8 +443,8 @@ void MainFrame::onGwaelinChange(wxCommandEvent &) {
 }
 
 void MainFrame::onHelpAbout(wxCommandEvent &) {
-    wxMessageBox(wxT("dwsrame 0.91 - Dragon Warrior SRAM Editor\n")
-                 wxT("Copyright (C) 2006-2007 emuWorks\n")
+    wxMessageBox(wxT("dwsrame 0.91a - Dragon Warrior SRAM Editor\n")
+                 wxT("Copyright (C) 2006-2008 emuWorks\n")
                  wxT("http://games.technoplaza.net/"),
         wxT("About dwsrame..."), wxOK | wxICON_INFORMATION);
 }

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="9.00"
 	Name="dwsrame"
-	ProjectGUID="{9D53772A-CFAC-4221-AA1C-8385AF421EB7}"
+	ProjectGUID="{3BF1A198-16F8-4AB7-8808-3F5C6C66EB6A}"
 	RootNamespace="dwsrame"
+	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
 		<Platform
@@ -15,10 +16,11 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug|Win32"
+			Name="Unicode Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
+			CharacterSet="2"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -37,9 +39,14 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\source"
+				Optimization="0"
+				AdditionalIncludeDirectories="..\..\source;&quot;C:\wxWidgets-2.8.9\lib\vc_lib\mswud&quot;"
+				PreprocessorDefinitions="wxUSE_UNICODE=1"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				DebugInformationFormat="3"
+				WarningLevel="3"
+				DebugInformationFormat="4"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -53,7 +60,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxbase26d.lib wxbase26d_xml.lib wxexpatd.lib wxmsw26d_adv.lib wxmsw26d_core.lib wxmsw26d_html.lib wxmsw26d_xrc.lib comctl32.lib rpcrt4.lib winmm.lib"
+				AdditionalDependencies="wxbase28ud.lib wxbase28ud_xml.lib wxexpatd.lib wxmsw28ud_adv.lib wxmsw28ud_core.lib wxmsw28ud_html.lib wxmsw28ud_xrc.lib comctl32.lib rpcrt4.lib"
+				AdditionalLibraryDirectories="&quot;C:\wxWidgets-2.8.9\lib\vc_lib&quot;"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
 			/>
@@ -76,17 +84,16 @@
 				Name="VCAppVerifierTool"
 			/>
 			<Tool
-				Name="VCWebDeploymentTool"
-			/>
-			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release|Win32"
+			Name="Unicode Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -105,75 +112,14 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\source"
-				RuntimeLibrary="2"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				AdditionalIncludeDirectories="..\..\source"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="wxbase26.lib wxbase26_xml.lib wxexpat.lib wxmsw26_adv.lib wxmsw26_core.lib wxmsw26_html.lib wxmsw26_xrc.lib comctl32.lib rpcrt4.lib winmm.lib"
-				TargetMachine="1"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release Unicode|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\source"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="..\..\source;&quot;C:\wxWidgets-2.8.9\lib\vc_lib\mswu&quot;"
 				PreprocessorDefinitions="wxUSE_UNICODE=1"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				WarningLevel="3"
+				DebugInformationFormat="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -187,7 +133,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxbase26u.lib wxbase26u_xml.lib wxexpat.lib wxmsw26u_adv.lib wxmsw26u_core.lib wxmsw26u_html.lib wxmsw26u_xrc.lib comctl32.lib rpcrt4.lib winmm.lib"
+				AdditionalDependencies="wxbase28u.lib wxbase28u_xml.lib wxexpat.lib wxmsw28u_adv.lib wxmsw28u_core.lib wxmsw28u_html.lib wxmsw28u_xrc.lib comctl32.lib rpcrt4.lib"
+				AdditionalLibraryDirectories="&quot;C:\wxWidgets-2.8.9\lib\vc_lib&quot;"
+				GenerateDebugInformation="false"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -209,7 +159,151 @@
 				Name="VCAppVerifierTool"
 			/>
 			<Tool
-				Name="VCWebDeploymentTool"
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="DLL Unicode Debug|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="..\..\source;&quot;C:\wxWidgets-2.8.9\lib\vc_dll\mswud&quot;"
+				PreprocessorDefinitions="wxUSE_UNICODE=1;WXUSINGDLL"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				AdditionalIncludeDirectories="..\..\source"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="wxbase28ud.lib wxbase28ud_xml.lib wxexpatd.lib wxmsw28ud_adv.lib wxmsw28ud_core.lib wxmsw28ud_html.lib wxmsw28ud_xrc.lib comctl32.lib rpcrt4.lib"
+				AdditionalLibraryDirectories="&quot;C:\wxWidgets-2.8.9\lib\vc_dll&quot;"
+				GenerateDebugInformation="true"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="DLL Unicode Release|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="..\..\source;&quot;C:\wxWidgets-2.8.9\lib\vc_dll\mswu&quot;"
+				PreprocessorDefinitions="wxUSE_UNICODE=1;WXUSINGDLL"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				WarningLevel="3"
+				DebugInformationFormat="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				AdditionalIncludeDirectories="..\..\source"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="wxbase28u.lib wxbase28u_xml.lib wxexpat.lib wxmsw28u_adv.lib wxmsw28u_core.lib wxmsw28u_html.lib wxmsw28u_xrc.lib comctl32.lib rpcrt4.lib"
+				AdditionalLibraryDirectories="&quot;C:\wxWidgets-2.8.9\lib\vc_dll&quot;"
+				GenerateDebugInformation="false"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -228,30 +322,39 @@
 				RelativePath="..\..\source\res\dwsrame.cc"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Unicode Debug|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						ObjectFile="$(IntDir)\$(InputName)1.obj"
-						XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						XMLDocumentationFileName="$(IntDir)\$(InputName)1.xml"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Unicode Release|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						ObjectFile="$(IntDir)\$(InputName)1.obj"
-						XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						XMLDocumentationFileName="$(IntDir)\$(InputName)1.xml"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release Unicode|Win32"
+					Name="DLL Unicode Debug|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						ObjectFile="$(IntDir)\$(InputName)1.obj"
-						XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						XMLDocumentationFileName="$(IntDir)\$(InputName)1.xml"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="DLL Unicode Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(InputName)1.obj"
+						XMLDocumentationFileName="$(IntDir)\$(InputName)1.xml"
 					/>
 				</FileConfiguration>
 			</File>

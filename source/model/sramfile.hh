@@ -1,6 +1,6 @@
 /*
  * dwsrame - Dragon Warrior SRAM Editor
- * Copyright (C) 2006-2007 emuWorks
+ * Copyright (C) 2006-2008 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of dwsrame.
@@ -19,7 +19,7 @@
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: sramfile.hh,v 1.9 2007/02/03 02:09:00 technoplaza Exp $
+// $Id: sramfile.hh,v 1.10 2008/12/15 22:48:11 jdratlif Exp $
 
 #ifndef _DWSRAME_SRAMFILE_HH_
 #define _DWSRAME_SRAMFILE_HH_

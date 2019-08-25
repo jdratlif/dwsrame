@@ -1,7 +1,9 @@
+# $Id: Makefile.am,v 1.12 2008/12/17 03:51:04 jdratlif Exp $
+
 AUTOMAKE_OPTIONS = subdir-objects
 CLEANFILES = res/dwsrame.cc
-EXTRA_DIST = res/icon32x32.ico res/icon32x32.xpm res/Info.plist \
-	res/dwsrame.xrc res/PkgInfo res/windows.rc
+EXTRA_DIST = res/dwsrame.icns res/dwsrame.xrc \
+	res/icon32x32.ico res/icon32x32.xpm res/Info.plist res/windows.rc
 
 bin_PROGRAMS = dwsrame
 
@@ -9,7 +11,7 @@ dwsrame_SOURCES = dwsrame.cc dwsrame.hh \
 	exception/invalidsramfileexception.cc \
 	exception/invalidsramfileexception.hh \
 	model/sramfile.cc model/sramfile.hh \
-    res/dwsrame.cc \
+	res/dwsrame.cc \
 	view/mainframe.cc view/mainframe.hh \
 	view/sramfiletarget.cc view/sramfiletarget.hh
 
@@ -22,4 +24,14 @@ endif
 
 .xrc.cc:
 	wxrc -c -o $@ $<
+
+dwsrame.app: dwsrame res/dwsrame.icns res/Info.plist
+	-mkdir dwsrame.app
+	-mkdir dwsrame.app/Contents
+	-mkdir dwsrame.app/Contents/MacOS
+	-mkdir dwsrame.app/Contents/Resources
+	cp dwsrame dwsrame.app/Contents/MacOS
+	cp res/Info.plist dwsrame.app/Contents
+	cp res/dwsrame.icns dwsrame.app/Contents/Resources
+	echo -n 'APPL????' > dwsrame.app/Contents/PkgInfo
 

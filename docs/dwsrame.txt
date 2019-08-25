@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
-| dwsrame 0.91 - The Dragon Warrior (NES) SRAM Editor
-| Copyright (C) 2006-2007 emuWorks (http://games.technoplaza.net/)
+| dwsrame 0.91a - The Dragon Warrior (NES) SRAM Editor
+| Copyright (C) 2006-2008 emuWorks (http://games.technoplaza.net/)
 | by John Ratliff <webmaster [AT] technoplaza [DOT] net>
 --------------------------------------------------------------------------------
 
@@ -39,24 +39,19 @@
 | 2.0 Compilation and Installation
 --------------------------------------------------------------------------------
 
-  If you are not using a binary distribution (Binaries are provided for Windows,
-  Linux GTK+, and Mac OS X), then you will need to compile the source. Or maybe
-  you just want to. In either case, it should be fairly simple. First, here are
-  the prerequisites:
+  Binaries are available for Windows (2000 and later), Linux (requires GTK+ >=
+  2.0), and Mac OS X (Tiger or later). The source is also available if you want
+  to compile it yourself.
   
-  An ISO compliant C++ compiler. I use g++ (3.4 or higher is recommended).
-  wxWidgets >= 2.6.0. I used wxWidgets 2.6.3. http://www.wxwidgets.org
+  To compile, you will need a modern C++ compiler and wxWidgets 2.8 or later.
   
-  I use the GNU autotool suite to create Makefiles, so if you have a UNIX build
-  environment, you can probably just do
+  On most platforms, compiling is as easy as opening a terminal and running
+  ./configure && make. That should work on Linux, Mac OS X, and Windows with
+  mingw/msys. There are also Visual Studio project files in the vstudio
+  directory.
   
-  ./configure && make
-  
-  make install if you like. configure with --prefix if you like also. You can do
-  ./configure --help for a full option listing.
-  
-  In Windows, you can use mingw and msys to obtain a unix development
-  environment. This is how I built the Windows binary.
+  For more complete compilation instructions, consult our compiling HOWTO at
+  http://games.technoplaza.net/compile.php.
   
 --------------------------------------------------------------------------------
 | 3.0 Using the Program
@@ -86,6 +81,13 @@
 | 5.0 Release History
 --------------------------------------------------------------------------------
   
+  Version 0.91a - Monday, December 15, 2008
+    - Updated code to compile under wxWidgets 2.8.
+    - Updated Visual Studio project files for Visual Studio 2008.
+    - Added upx compression to mac version.
+    - Added icons for the mac version.
+    - Updated compilation instructions.
+
   Version 0.91 - Sunday, February 18, 2007
     - Fixed minor bugs that cause assertion errors.
     - Fixed minor typos that prevented unicode compilation.
@@ -93,18 +95,18 @@
     - Recompiled Windows binary with VC++ for better efficiency.
 
   Version 0.90 - Friday, February 2, 2007
-    - Added Drag N Drop support
-    - Added Readme
-    - Added SRAM Document
-    - Added Linux and Mac OS X binaries
-    - Added support for editing all game slots
-    - Added validity checks (insofar as possible)
-    - Added save on exit/close confirmation
-    - Added Save As and Close functionality
+    - Added Drag N Drop support.
+    - Added Readme.
+    - Added SRAM Document.
+    - Added Linux and Mac OS X binaries.
+    - Added support for editing all game slots.
+    - Added validity checks (insofar as possible).
+    - Added save on exit/close confirmation.
+    - Added Save As and Close functionality.
     
   Version 0.80 - Wednesday, January 31, 2007
-    - First public beta
-    - Supports editing the first valid save game only
+    - First public beta.
+    - Supports editing the first valid save game only.
 
 --------------------------------------------------------------------------------
 | 6.0 Contacting the Author
@@ -130,7 +132,7 @@
 | 8.0 Legal Information
 --------------------------------------------------------------------------------
 
-  This program is Copyright (C) 2006-2007 emuWorks
+  This program is Copyright (C) 2006-2008 emuWorks
   (http://games.technoplaza.net/). It is licensed under the GNU General Public
   License, which is included with this program in the docs directory in the file
   license.txt.
