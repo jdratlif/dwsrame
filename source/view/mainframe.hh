@@ -19,7 +19,7 @@
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: mainframe.hh,v 1.9 2007/02/01 03:01:02 technoplaza Exp $
+// $Id: mainframe.hh,v 1.15 2007/02/03 02:09:00 technoplaza Exp $
 
 #ifndef _DWSRAME_MAINFRAME_HH_
 #define _DWSRAME_MAINFRAME_HH_
@@ -27,13 +27,24 @@
 namespace dwsrame {
     class SRAMFile;
     
+    /// The main frame for the application
     class MainFrame : public wxFrame {
         DECLARE_CLASS(MainFrame)
         DECLARE_EVENT_TABLE()
         
+        friend class SRAMFileTarget;
+        
     private:
         wxString sramFile;
         SRAMFile *sram;
+        bool enableEvents;
+        
+        /**
+         * Closes the current SRAM file.
+         *
+         * @return true if the file was closed; false otherwise.
+         */
+        bool closeSRAM();
         
         /**
          * Loads game data from the SRAM.
@@ -55,9 +66,30 @@ namespace dwsrame {
         void openSRAM(const wxString &filename);
         
         /**
+         * Saves the current SRAM to disk.
+         *
+         * @return true if the SRAM was saved; false otherwise.
+         */
+        bool saveSRAM();
+        
+        /**
+         * Checks the fields for valid data.
+         *
+         * @return true if all the fields are valid; false otherwise.
+         */
+        bool hasValidData();
+        
+        /**
          * Called when the hero's armor is changed.
          */
         void onArmorChange(wxCommandEvent &);
+        
+        /**
+         * Called when the frame is about to be closed.
+         *
+         * @param event The triggering wxCloseEvent.
+         */
+        void onClose(wxCloseEvent &event);
         
         /**
          * Called when the hero's experience is changed.
@@ -65,9 +97,21 @@ namespace dwsrame {
         void onExperienceEdit(wxCommandEvent &);
         
         /**
+         * Called when the file menu's close command is triggered.
+         */
+        void onFileClose(wxCommandEvent &);
+        
+        /**
          * Called when the file menu's exit command is triggered.
          */
         void onFileExit(wxCommandEvent &);
+        
+        /**
+         * Called to set the state of the file menu.
+         *
+         * @param event The triggering wxUpdateUIEvent.
+         */
+        void onFileMenuUpdate(wxUpdateUIEvent &event);
         
         /**
          * Called when the file menu's open command is triggered.
@@ -78,6 +122,25 @@ namespace dwsrame {
          * Called when the file menu's save command is triggered.
          */
         void onFileSave(wxCommandEvent &);
+        
+        /**
+         * Called when the file menu's save as command is triggered.
+         */
+        void onFileSaveAs(wxCommandEvent &);
+        
+        /**
+         * Called to set the state of the game menu.
+         *
+         * @param event The triggering wxUpdateUIEvent.
+         */
+        void onGameMenuUpdate(wxUpdateUIEvent &event);
+        
+        /**
+         * Called when one of the game slots from the game menu is selected.
+         *
+         * @param event The triggering wxCommandEvent.
+         */
+        void onGameSelect(wxCommandEvent &event);
         
         /**
          * Called when the hero's gold is changed.
@@ -150,8 +213,14 @@ namespace dwsrame {
         MainFrame();
     };
     
+    inline void MainFrame::onFileClose(wxCommandEvent &)
+        { closeSRAM(); }
+    
     inline void MainFrame::onFileExit(wxCommandEvent &)
         { Close(); }
+        
+    inline void MainFrame::onFileSave(wxCommandEvent &)
+        { saveSRAM(); }
 }
 
 #endif

@@ -161,7 +161,7 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 SUBDIRS = source
-EXTRA_DIST = docs/*.txt
+EXTRA_DIST = apidocs docs/*.txt
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 

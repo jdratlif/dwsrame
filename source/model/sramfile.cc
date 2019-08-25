@@ -19,7 +19,7 @@
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: sramfile.cc,v 1.7 2007/02/01 00:27:27 technoplaza Exp $
+// $Id: sramfile.cc,v 1.9 2007/02/02 04:48:06 technoplaza Exp $
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
@@ -86,9 +86,11 @@ SRAMFile::SRAMFile(const wxString &filename)
     bool foundValid = false;
     
     for (int game = 2; game >= 0; --game) {
-        if (checksum(game) == getChecksum(game)) {
-            valid[game] = foundValid = true;
-            setGame(game);
+        if (sram[SLOT_OFFSET + game] == MAGIC_NUMBER) {
+            if (checksum(game) == getChecksum(game)) {
+                valid[game] = foundValid = true;
+                setGame(game);
+            }
         }
     }
     

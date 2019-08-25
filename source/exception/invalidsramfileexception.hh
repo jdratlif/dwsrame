@@ -19,7 +19,7 @@
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: invalidsramfileexception.hh,v 1.2 2007/01/31 21:12:57 technoplaza Exp $
+// $Id: invalidsramfileexception.hh,v 1.3 2007/02/03 02:09:00 technoplaza Exp $
 
 #ifndef _DWSRAME_INVALIDSRAMFILEEXCEPTION_HH_
 #define _DWSRAME_INVALIDSRAMFILEEXCEPTION_HH_
@@ -32,6 +32,7 @@ namespace dwsrame {
         ISFE_FILENOTFOUND, ISFE_INVALIDSIZE, ISFE_NOVALIDGAMES
     };
     
+    /// exception thrown when an invalid SRAM file is detected
     class InvalidSRAMFileException : public std::runtime_error {
     private:
         enum isfe_error error;

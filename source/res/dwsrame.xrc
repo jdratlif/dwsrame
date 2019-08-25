@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1252"?>
 <resource version="2.3.0.1" xmlns="http://www.wxwidgets.org/wxxrc">
     <object class="wxFrame" name="IDF_DWSRAME" subclass="MainFrame">
-        <style>wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX</style>
+        <style>wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxMINIMIZE_BOX|wxMAXIMIZE_BOX|wxCLOSE_BOX</style>
         <size>800,600</size>
         <title>Dragon Warrior SRAM Editor</title>
         <object class="wxMenuBar" name="IDM_DWSRAME">

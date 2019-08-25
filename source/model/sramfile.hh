@@ -19,7 +19,7 @@
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: sramfile.hh,v 1.6 2007/01/31 21:12:57 technoplaza Exp $
+// $Id: sramfile.hh,v 1.9 2007/02/03 02:09:00 technoplaza Exp $
 
 #ifndef _DWSRAME_SRAMFILE_HH_
 #define _DWSRAME_SRAMFILE_HH_
@@ -65,6 +65,9 @@ namespace dwsrame {
     /// the magic keys offset
     const int KEYS_OFFSET = 0x8;
     
+    /// the magic number appears many times in the SRAM
+    const char MAGIC_NUMBER = '\xC8';
+    
     /// the magic points offset
     const int MP_OFFSET = 0x18;
     
@@ -73,6 +76,9 @@ namespace dwsrame {
     
     /// the shield bits of the equipment byte
     const int SHIELD_MASK = 0x3;
+    
+    /// the starting offset of the game slot usage bytes
+    const int SLOT_OFFSET = 0x35;
     
     /// the size of an SRAM file
     const int SRAM_SIZE = 0x2000;
@@ -115,6 +121,7 @@ namespace dwsrame {
         DW_FLAMESWORD = 0xC0, DW_ERDRICKSSWORD = 0xE0
     };
     
+    /// class to interface with an SRAM file
     class SRAMFile {
     private:
         int game;
@@ -251,7 +258,7 @@ namespace dwsrame {
         /**
          * Sets the hero's herbs.
          *
-         * @param The new herbs.
+         * @param herbs The new herbs.
          */
         void setHerbs(int herbs);
         

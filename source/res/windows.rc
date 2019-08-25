@@ -19,7 +19,9 @@
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: windows.rc,v 1.1.1.1 2006/09/17 06:43:48 technoplaza Exp $
+// $Id: windows.rc,v 1.2 2007/02/01 21:27:36 technoplaza Exp $
+
+IDR_ICON ICON DISCARDABLE "res\\icon32x32.ico"
 
 #include <wx/msw/wx.rc>
 

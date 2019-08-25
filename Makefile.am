@@ -1,5 +1,5 @@
 SUBDIRS = source
-EXTRA_DIST = docs/*.txt
+EXTRA_DIST = apidocs docs/*.txt
 
 .PHONY: allclean apidocs touch
 

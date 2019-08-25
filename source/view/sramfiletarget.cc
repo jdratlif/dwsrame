@@ -18,34 +18,29 @@
  * dwsrame; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
+ 
+// $Id: sramfiletarget.cc,v 1.2 2007/02/02 22:25:17 technoplaza Exp $
 
-// $Id: dwsrame.hh,v 1.3 2007/02/03 02:09:00 technoplaza Exp $
-
-#ifndef _DWSRAME_HH_
-#define _DWSRAME_HH_
-
-/// The project namespace
-namespace dwsrame {
-    class MainFrame;
-    
-    /// The main application class
-    class dwsrameApp : public wxApp {
-        DECLARE_CLASS(dwsrameApp)
-        
-    private:
-        MainFrame *frame;
-        
-    public:
-        /**
-         * Called to initialize the application.
-         *
-         * @return true on successful initialization; false otherwise.
-         */
-        virtual bool OnInit();
-    };
-    
-    DECLARE_APP(dwsrameApp)
-}
-
+#ifdef HAVE_CONFIG_H
+    #include <config.h>
 #endif
+
+#include <wx/wxprec.h>
+
+#ifndef WX_PRECOMP
+    #include <wx/wx.h>
+#endif
+
+#include "view/mainframe.hh"
+#include "view/sramfiletarget.hh"
+
+using namespace dwsrame;
+
+bool SRAMFileTarget::OnDropFiles(wxCoord, wxCoord, const wxArrayString &files) {
+    if (files.GetCount() > 0) {
+        frame->openSRAM(files[0]);
+    }
+    
+    return true;
+}
 

@@ -54,13 +54,13 @@ am__dwsrame_SOURCES_DIST = dwsrame.cc dwsrame.hh \
 	exception/invalidsramfileexception.cc \
 	exception/invalidsramfileexception.hh model/sramfile.cc \
 	model/sramfile.hh view/mainframe.cc view/mainframe.hh \
-	res/windows.rc
+	view/sramfiletarget.cc view/sramfiletarget.hh res/windows.rc
 am__dirstamp = $(am__leading_dot)dirstamp
 @WINDOWS_TRUE@am__objects_1 = res/windows.$(OBJEXT)
 am_dwsrame_OBJECTS = dwsrame.$(OBJEXT) \
 	exception/invalidsramfileexception.$(OBJEXT) \
 	model/sramfile.$(OBJEXT) view/mainframe.$(OBJEXT) \
-	$(am__objects_1)
+	view/sramfiletarget.$(OBJEXT) $(am__objects_1)
 nodist_dwsrame_OBJECTS = res/dwsrame.$(OBJEXT)
 dwsrame_OBJECTS = $(am_dwsrame_OBJECTS) $(nodist_dwsrame_OBJECTS)
 dwsrame_LDADD = $(LDADD)
@@ -172,12 +172,14 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 AUTOMAKE_OPTIONS = subdir-objects
 CLEANFILES = res/dwsrame.cc
-EXTRA_DIST = res/dwsrame.xrc res/windows.rc
+EXTRA_DIST = res/icon32x32.ico res/icon32x32.xpm res/Info.plist \
+	res/dwsrame.xrc res/PkgInfo res/windows.rc
+
 dwsrame_SOURCES = dwsrame.cc dwsrame.hh \
 	exception/invalidsramfileexception.cc \
 	exception/invalidsramfileexception.hh model/sramfile.cc \
 	model/sramfile.hh view/mainframe.cc view/mainframe.hh \
-	$(am__append_1)
+	view/sramfiletarget.cc view/sramfiletarget.hh $(am__append_1)
 nodist_dwsrame_SOURCES = res/dwsrame.cc
 all: all-am
 
@@ -259,6 +261,8 @@ view/$(DEPDIR)/$(am__dirstamp):
 	@: > view/$(DEPDIR)/$(am__dirstamp)
 view/mainframe.$(OBJEXT): view/$(am__dirstamp) \
 	view/$(DEPDIR)/$(am__dirstamp)
+view/sramfiletarget.$(OBJEXT): view/$(am__dirstamp) \
+	view/$(DEPDIR)/$(am__dirstamp)
 res/$(am__dirstamp):
 	@$(mkdir_p) res
 	@: > res/$(am__dirstamp)
@@ -280,6 +284,7 @@ mostlyclean-compile:
 	-rm -f res/dwsrame.$(OBJEXT)
 	-rm -f res/windows.$(OBJEXT)
 	-rm -f view/mainframe.$(OBJEXT)
+	-rm -f view/sramfiletarget.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
@@ -289,6 +294,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@model/$(DEPDIR)/sramfile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@res/$(DEPDIR)/dwsrame.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@view/$(DEPDIR)/mainframe.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@view/$(DEPDIR)/sramfiletarget.Po@am__quote@
 
 .cc.o:
 @am__fastdepCXX_TRUE@	depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`; \

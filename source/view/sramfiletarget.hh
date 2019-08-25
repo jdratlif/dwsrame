@@ -18,33 +18,41 @@
  * dwsrame; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
+ 
+// $Id: sramfiletarget.hh,v 1.2 2007/02/02 22:25:17 technoplaza Exp $
 
-// $Id: dwsrame.hh,v 1.3 2007/02/03 02:09:00 technoplaza Exp $
+#ifndef _DWSRAME_SRAMFILETARGET_HH_
+#define _DWSRAME_SRAMFILETARGET_HH_
 
-#ifndef _DWSRAME_HH_
-#define _DWSRAME_HH_
+#include <wx/dnd.h>
 
-/// The project namespace
 namespace dwsrame {
     class MainFrame;
     
-    /// The main application class
-    class dwsrameApp : public wxApp {
-        DECLARE_CLASS(dwsrameApp)
-        
+    /// Class to implement a drop target for SRAM files
+    class SRAMFileTarget : public wxFileDropTarget {
     private:
         MainFrame *frame;
         
     public:
         /**
-         * Called to initialize the application.
+         * Creates a new SRAMFileTarget.
          *
-         * @return true on successful initialization; false otherwise.
+         * @param frame The MainFrame to send files to.
          */
-        virtual bool OnInit();
+        SRAMFileTarget(MainFrame *frame);
+        
+        /**
+         * Called when files are dropped on the associated MainFrame.
+         *
+         * @param files The filenames.
+         *
+         * @return true if the drop was accepted; false otherwise.
+         */
+        bool OnDropFiles(wxCoord, wxCoord, const wxArrayString &files);
     };
     
-    DECLARE_APP(dwsrameApp)
+    inline SRAMFileTarget::SRAMFileTarget(MainFrame *frame) : frame(frame) {}
 }
 
 #endif
