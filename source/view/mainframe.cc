@@ -19,7 +19,7 @@
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: mainframe.cc,v 1.14 2007/02/02 04:59:40 technoplaza Exp $
+// $Id: mainframe.cc,v 1.15 2007/02/18 07:31:01 technoplaza Exp $
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
@@ -31,6 +31,7 @@
     #include <wx/wx.h>
 #endif
 
+#include <wx/notebook.h>
 #include <wx/spinctrl.h>
 #include <wx/xrc/xmlres.h>
 
@@ -66,8 +67,8 @@ MainFrame::MainFrame() : sram(0), enableEvents(true) {
     XRCCTRL(*this, "IDT_HERO_MP", wxTextCtrl)->SetValidator(validator);
     XRCCTRL(*this, "IDT_HERO_EXP", wxTextCtrl)->SetValidator(validator);
     XRCCTRL(*this, "IDT_HERO_GOLD", wxTextCtrl)->SetValidator(validator);
-    XRCCTRL(*this, "IDS_HERO_HERBS", wxTextCtrl)->SetValidator(validator);
-    XRCCTRL(*this, "IDS_HERO_KEYS", wxTextCtrl)->SetValidator(validator);
+    XRCCTRL(*this, "IDS_HERO_HERBS", wxSpinCtrl)->SetValidator(validator);
+    XRCCTRL(*this, "IDS_HERO_KEYS", wxSpinCtrl)->SetValidator(validator);
     
     letters.Add(wxT("a")); letters.Add(wxT("b")); letters.Add(wxT("c"));
     letters.Add(wxT("d")); letters.Add(wxT("e")); letters.Add(wxT("f"));
@@ -135,13 +136,13 @@ void MainFrame::loadGame(int game) {
     // hero's stats
     XRCCTRL(*this, "IDT_HERO_NAME", wxTextCtrl)->SetValue(sram->getName());
     XRCCTRL(*this, "IDT_HERO_HP", wxTextCtrl)->
-        SetValue(wxString::Format("%u", sram->getHP()));
+        SetValue(wxString::Format(wxT("%u"), sram->getHP()));
     XRCCTRL(*this, "IDT_HERO_MP", wxTextCtrl)->
-        SetValue(wxString::Format("%u", sram->getMP()));
+        SetValue(wxString::Format(wxT("%u"), sram->getMP()));
     XRCCTRL(*this, "IDT_HERO_EXP", wxTextCtrl)->
-        SetValue(wxString::Format("%u", sram->getExperience()));
+        SetValue(wxString::Format(wxT("%u"), sram->getExperience()));
     XRCCTRL(*this, "IDT_HERO_GOLD", wxTextCtrl)->
-        SetValue(wxString::Format("%u", sram->getGold()));
+        SetValue(wxString::Format(wxT("%u"), sram->getGold()));
         
     // hero's inventory
     XRCCTRL(*this, "IDS_HERO_HERBS", wxSpinCtrl)->SetValue(sram->getHerbs());
@@ -442,9 +443,9 @@ void MainFrame::onGwaelinChange(wxCommandEvent &) {
 }
 
 void MainFrame::onHelpAbout(wxCommandEvent &) {
-    wxMessageBox(wxT("dwsrame 0.90 - Dragon Warrior SRAM Editor\n"
-                     "Copyright (C) 2006-2007 emuWorks\n"
-                     "http://games.technoplaza.net/"),
+    wxMessageBox(wxT("dwsrame 0.91 - Dragon Warrior SRAM Editor\n")
+                 wxT("Copyright (C) 2006-2007 emuWorks\n")
+                 wxT("http://games.technoplaza.net/"),
         wxT("About dwsrame..."), wxOK | wxICON_INFORMATION);
 }
 

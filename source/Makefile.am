@@ -9,10 +9,9 @@ dwsrame_SOURCES = dwsrame.cc dwsrame.hh \
 	exception/invalidsramfileexception.cc \
 	exception/invalidsramfileexception.hh \
 	model/sramfile.cc model/sramfile.hh \
+    res/dwsrame.cc \
 	view/mainframe.cc view/mainframe.hh \
 	view/sramfiletarget.cc view/sramfiletarget.hh
-
-nodist_dwsrame_SOURCES = res/dwsrame.cc
 
 if WINDOWS
 dwsrame_SOURCES += res/windows.rc

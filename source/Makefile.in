@@ -53,16 +53,17 @@ PROGRAMS = $(bin_PROGRAMS)
 am__dwsrame_SOURCES_DIST = dwsrame.cc dwsrame.hh \
 	exception/invalidsramfileexception.cc \
 	exception/invalidsramfileexception.hh model/sramfile.cc \
-	model/sramfile.hh view/mainframe.cc view/mainframe.hh \
-	view/sramfiletarget.cc view/sramfiletarget.hh res/windows.rc
+	model/sramfile.hh res/dwsrame.cc view/mainframe.cc \
+	view/mainframe.hh view/sramfiletarget.cc \
+	view/sramfiletarget.hh res/windows.rc
 am__dirstamp = $(am__leading_dot)dirstamp
 @WINDOWS_TRUE@am__objects_1 = res/windows.$(OBJEXT)
 am_dwsrame_OBJECTS = dwsrame.$(OBJEXT) \
 	exception/invalidsramfileexception.$(OBJEXT) \
-	model/sramfile.$(OBJEXT) view/mainframe.$(OBJEXT) \
-	view/sramfiletarget.$(OBJEXT) $(am__objects_1)
-nodist_dwsrame_OBJECTS = res/dwsrame.$(OBJEXT)
-dwsrame_OBJECTS = $(am_dwsrame_OBJECTS) $(nodist_dwsrame_OBJECTS)
+	model/sramfile.$(OBJEXT) res/dwsrame.$(OBJEXT) \
+	view/mainframe.$(OBJEXT) view/sramfiletarget.$(OBJEXT) \
+	$(am__objects_1)
+dwsrame_OBJECTS = $(am_dwsrame_OBJECTS)
 dwsrame_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -76,7 +77,7 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(dwsrame_SOURCES) $(nodist_dwsrame_SOURCES)
+SOURCES = $(dwsrame_SOURCES)
 DIST_SOURCES = $(am__dwsrame_SOURCES_DIST)
 ETAGS = etags
 CTAGS = ctags
@@ -178,9 +179,9 @@ EXTRA_DIST = res/icon32x32.ico res/icon32x32.xpm res/Info.plist \
 dwsrame_SOURCES = dwsrame.cc dwsrame.hh \
 	exception/invalidsramfileexception.cc \
 	exception/invalidsramfileexception.hh model/sramfile.cc \
-	model/sramfile.hh view/mainframe.cc view/mainframe.hh \
-	view/sramfiletarget.cc view/sramfiletarget.hh $(am__append_1)
-nodist_dwsrame_SOURCES = res/dwsrame.cc
+	model/sramfile.hh res/dwsrame.cc view/mainframe.cc \
+	view/mainframe.hh view/sramfiletarget.cc \
+	view/sramfiletarget.hh $(am__append_1)
 all: all-am
 
 .SUFFIXES:
@@ -253,6 +254,14 @@ model/$(DEPDIR)/$(am__dirstamp):
 	@: > model/$(DEPDIR)/$(am__dirstamp)
 model/sramfile.$(OBJEXT): model/$(am__dirstamp) \
 	model/$(DEPDIR)/$(am__dirstamp)
+res/$(am__dirstamp):
+	@$(mkdir_p) res
+	@: > res/$(am__dirstamp)
+res/$(DEPDIR)/$(am__dirstamp):
+	@$(mkdir_p) res/$(DEPDIR)
+	@: > res/$(DEPDIR)/$(am__dirstamp)
+res/dwsrame.$(OBJEXT): res/$(am__dirstamp) \
+	res/$(DEPDIR)/$(am__dirstamp)
 view/$(am__dirstamp):
 	@$(mkdir_p) view
 	@: > view/$(am__dirstamp)
@@ -263,15 +272,7 @@ view/mainframe.$(OBJEXT): view/$(am__dirstamp) \
 	view/$(DEPDIR)/$(am__dirstamp)
 view/sramfiletarget.$(OBJEXT): view/$(am__dirstamp) \
 	view/$(DEPDIR)/$(am__dirstamp)
-res/$(am__dirstamp):
-	@$(mkdir_p) res
-	@: > res/$(am__dirstamp)
-res/$(DEPDIR)/$(am__dirstamp):
-	@$(mkdir_p) res/$(DEPDIR)
-	@: > res/$(DEPDIR)/$(am__dirstamp)
 res/windows.$(OBJEXT): res/$(am__dirstamp) \
-	res/$(DEPDIR)/$(am__dirstamp)
-res/dwsrame.$(OBJEXT): res/$(am__dirstamp) \
 	res/$(DEPDIR)/$(am__dirstamp)
 dwsrame$(EXEEXT): $(dwsrame_OBJECTS) $(dwsrame_DEPENDENCIES) 
 	@rm -f dwsrame$(EXEEXT)

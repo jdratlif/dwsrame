@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
-| dwsrame 0.90 - The Dragon Warrior (NES) SRAM Editor
+| dwsrame 0.91 - The Dragon Warrior (NES) SRAM Editor
 | Copyright (C) 2006-2007 emuWorks (http://games.technoplaza.net/)
 | by John Ratliff <webmaster [AT] technoplaza [DOT] net>
 --------------------------------------------------------------------------------
@@ -86,6 +86,12 @@
 | 5.0 Release History
 --------------------------------------------------------------------------------
   
+  Version 0.91 - Sunday, February 18, 2007
+    - Fixed minor bugs that cause assertion errors.
+    - Fixed minor typos that prevented unicode compilation.
+    - Added Microsoft Visual Studio 2005 projects.
+    - Recompiled Windows binary with VC++ for better efficiency.
+
   Version 0.90 - Friday, February 2, 2007
     - Added Drag N Drop support
     - Added Readme
