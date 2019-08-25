@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<resource version="2.3.0.1" xmlns="http://www.wxwidgets.org/wxxrc">
+    <object class="wxFrame" name="IDF_DWSRAME" subclass="MainFrame">
+        <style>wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX</style>
+        <size>800,600</size>
+        <title>Dragon Warrior SRAM Editor</title>
+        <object class="wxMenuBar" name="IDM_DWSRAME">
+            <object class="wxMenu">
+                <label>&amp;File</label>
+                <object class="wxMenuItem" name="wxID_OPEN">
+                    <label>&amp;Open\tCtrl-O</label>
+                    <help>Open Dragon Warrior SRAM file</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="wxID_CLOSE">
+                    <label>&amp;Close\tCtrl-W</label>
+                    <help>Close current SRAM file</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="wxID_SAVE">
+                    <label>&amp;Save\tCtrl-S</label>
+                    <help>Save changes to SRAM file</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_SAVEAS">
+                    <label>Save &amp;As</label>
+                    <help>Save changes to SRAM file as...</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="wxID_EXIT">
+                    <label>E&amp;xit</label>
+                    <help>Quit Dragon Warrior SRAM Editor</help>
+                </object>
+            </object>
+            <object class="wxMenu">
+                <label>&amp;Game</label>
+                <object class="wxMenuItem" name="IDM_GAME_GAME1">
+                    <label>Game &amp;1\tF1</label>
+                    <radio>1</radio>
+                    <checked>1</checked>
+                    <help>Edit the first save game slot</help>
+                </object>
+                <object class="wxMenuItem" name="IDM_GAME_GAME2">
+                    <label>Game &amp;2\tF2</label>
+                    <radio>1</radio>
+                    <help>Edit the second save game slot</help>
+                </object>
+                <object class="wxMenuItem" name="IDM_GAME_GAME3">
+                    <label>Game &amp;3\tF3</label>
+                    <radio>1</radio>
+                    <help>Edit the third save game slot</help>
+                </object>
+            </object>
+            <object class="wxMenu">
+                <label>&amp;Help</label>
+                <object class="wxMenuItem" name="wxID_ABOUT">
+                    <label>&amp;About</label>
+                    <help>Displays version and copyright information</help>
+                </object>
+            </object>
+        </object>
+        <object class="wxBoxSizer">
+            <orient>wxVERTICAL</orient>
+            <object class="sizeritem">
+                <flag>wxGROW|wxALL</flag>
+                <border>0</border>
+                <option>1</option>
+                <object class="wxBoxSizer">
+                    <orient>wxVERTICAL</orient>
+                    <object class="sizeritem">
+                        <flag>wxGROW|wxALL</flag>
+                        <border>0</border>
+                        <option>1</option>
+                        <object class="wxNotebook" name="IDN_DWSRAME">
+                            <style>wxNB_TOP</style>
+                            <object class="notebookpage">
+                                <label>Hero</label>
+                                <object class="wxPanel" name="IDP_HERO">
+                                    <style>wxSUNKEN_BORDER|wxTAB_TRAVERSAL</style>
+                                    <object class="wxBoxSizer">
+                                        <orient>wxVERTICAL</orient>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_LEFT|wxLEFT|wxRIGHT|wxTOP</flag>
+                                            <border>5</border>
+                                            <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                                <orient>wxVERTICAL</orient>
+                                                <label>Stats</label>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+                                                    <border>0</border>
+                                                    <object class="wxFlexGridSizer">
+                                                        <cols>4</cols>
+                                                        <rows>3</rows>
+                                                        <vgap>0</vgap>
+                                                        <hgap>0</hgap>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM|wxADJUST_MINSIZE</flag>
+                                                            <border>5</border>
+                                                            <object class="wxStaticText" name="wxID_STATIC">
+                                                                <label>Name: </label>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxTextCtrl" name="IDT_HERO_NAME">
+                                                                <maxlength>8</maxlength>
+                                                            </object>
+                                                        </object>
+                                                        <object class="spacer">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                            <border>5</border>
+                                                            <size>5,5</size>
+                                                        </object>
+                                                        <object class="spacer">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                            <border>5</border>
+                                                            <size>5,5</size>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM|wxADJUST_MINSIZE</flag>
+                                                            <border>5</border>
+                                                            <object class="wxStaticText" name="wxID_STATIC">
+                                                                <label>HP: </label>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxTextCtrl" name="IDT_HERO_HP">
+                                                                <maxlength>3</maxlength>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM|wxADJUST_MINSIZE</flag>
+                                                            <border>5</border>
+                                                            <object class="wxStaticText" name="wxID_STATIC">
+                                                                <label>MP: </label>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxTextCtrl" name="IDT_HERO_MP">
+                                                                <maxlength>3</maxlength>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM|wxADJUST_MINSIZE</flag>
+                                                            <border>5</border>
+                                                            <object class="wxStaticText" name="wxID_STATIC">
+                                                                <label>Exp: </label>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxTextCtrl" name="IDT_HERO_EXP">
+                                                                <maxlength>5</maxlength>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM|wxADJUST_MINSIZE</flag>
+                                                            <border>5</border>
+                                                            <object class="wxStaticText" name="wxID_STATIC">
+                                                                <label>Gold: </label>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxTextCtrl" name="IDT_HERO_GOLD">
+                                                                <maxlength>5</maxlength>
+                                                            </object>
+                                                        </object>
+                                                    </object>
+                                                </object>
+                                            </object>
+                                        </object>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_LEFT|wxLEFT|wxRIGHT|wxTOP</flag>
+                                            <border>5</border>
+                                            <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                                <orient>wxVERTICAL</orient>
+                                                <label>Inventory</label>
+                                                <object class="sizeritem">
+                                                    <flag>wxGROW|wxALL</flag>
+                                                    <border>0</border>
+                                                    <object class="wxBoxSizer">
+                                                        <orient>wxHORIZONTAL</orient>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM|wxADJUST_MINSIZE</flag>
+                                                            <border>5</border>
+                                                            <object class="wxStaticText" name="wxID_STATIC">
+                                                                <label>Herbs: </label>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxSpinCtrl" name="IDS_HERO_HERBS">
+                                                                <style>wxSP_ARROW_KEYS</style>
+                                                                <value>0</value>
+                                                                <min>0</min>
+                                                                <max>6</max>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM|wxADJUST_MINSIZE</flag>
+                                                            <border>5</border>
+                                                            <object class="wxStaticText" name="wxID_STATIC">
+                                                                <label>Keys: </label>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxSpinCtrl" name="IDS_HERO_KEYS">
+                                                                <style>wxSP_ARROW_KEYS</style>
+                                                                <value>0</value>
+                                                                <min>0</min>
+                                                                <max>6</max>
+                                                            </object>
+                                                        </object>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+                                                    <border>0</border>
+                                                    <object class="wxGridSizer">
+                                                        <cols>4</cols>
+                                                        <rows>2</rows>
+                                                        <vgap>0</vgap>
+                                                        <hgap>0</hgap>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxChoice" name="IDC_HERO_INVENTORY1">
+                                                                <content>
+                                                                    <item>Nothing</item>
+                                                                    <item>Torch</item>
+                                                                    <item>Fairy Water</item>
+                                                                    <item>Wings</item>
+                                                                    <item>Dragon's Scale</item>
+                                                                    <item>Fairy Flute</item>
+                                                                    <item>Fighter's Ring</item>
+                                                                    <item>Erdrick's Token</item>
+                                                                    <item>Gwaelin's Love</item>
+                                                                    <item>Cursed Belt</item>
+                                                                    <item>Silver Harp</item>
+                                                                    <item>Death Necklace</item>
+                                                                    <item>Stones of Sunlight</item>
+                                                                    <item>Staff of Rain</item>
+                                                                    <item>Rainbow Drop</item>
+                                                                </content>
+                                                                <selection>0</selection>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxChoice" name="IDC_HERO_INVENTORY2">
+                                                                <content>
+                                                                    <item>Nothing</item>
+                                                                    <item>Torch</item>
+                                                                    <item>Fairy Water</item>
+                                                                    <item>Wings</item>
+                                                                    <item>Dragon's Scale</item>
+                                                                    <item>Fairy Flute</item>
+                                                                    <item>Fighter's Ring</item>
+                                                                    <item>Erdrick's Token</item>
+                                                                    <item>Gwaelin's Love</item>
+                                                                    <item>Cursed Belt</item>
+                                                                    <item>Silver Harp</item>
+                                                                    <item>Death Necklace</item>
+                                                                    <item>Stones of Sunlight</item>
+                                                                    <item>Staff of Rain</item>
+                                                                    <item>Rainbow Drop</item>
+                                                                </content>
+                                                                <selection>0</selection>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxChoice" name="IDC_HERO_INVENTORY3">
+                                                                <content>
+                                                                    <item>Nothing</item>
+                                                                    <item>Torch</item>
+                                                                    <item>Fairy Water</item>
+                                                                    <item>Wings</item>
+                                                                    <item>Dragon's Scale</item>
+                                                                    <item>Fairy Flute</item>
+                                                                    <item>Fighter's Ring</item>
+                                                                    <item>Erdrick's Token</item>
+                                                                    <item>Gwaelin's Love</item>
+                                                                    <item>Cursed Belt</item>
+                                                                    <item>Silver Harp</item>
+                                                                    <item>Death Necklace</item>
+                                                                    <item>Stones of Sunlight</item>
+                                                                    <item>Staff of Rain</item>
+                                                                    <item>Rainbow Drop</item>
+                                                                </content>
+                                                                <selection>0</selection>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxChoice" name="IDC_HERO_INVENTORY4">
+                                                                <content>
+                                                                    <item>Nothing</item>
+                                                                    <item>Torch</item>
+                                                                    <item>Fairy Water</item>
+                                                                    <item>Wings</item>
+                                                                    <item>Dragon's Scale</item>
+                                                                    <item>Fairy Flute</item>
+                                                                    <item>Fighter's Ring</item>
+                                                                    <item>Erdrick's Token</item>
+                                                                    <item>Gwaelin's Love</item>
+                                                                    <item>Cursed Belt</item>
+                                                                    <item>Silver Harp</item>
+                                                                    <item>Death Necklace</item>
+                                                                    <item>Stones of Sunlight</item>
+                                                                    <item>Staff of Rain</item>
+                                                                    <item>Rainbow Drop</item>
+                                                                </content>
+                                                                <selection>0</selection>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxChoice" name="IDC_HERO_INVENTORY5">
+                                                                <content>
+                                                                    <item>Nothing</item>
+                                                                    <item>Torch</item>
+                                                                    <item>Fairy Water</item>
+                                                                    <item>Wings</item>
+                                                                    <item>Dragon's Scale</item>
+                                                                    <item>Fairy Flute</item>
+                                                                    <item>Fighter's Ring</item>
+                                                                    <item>Erdrick's Token</item>
+                                                                    <item>Gwaelin's Love</item>
+                                                                    <item>Cursed Belt</item>
+                                                                    <item>Silver Harp</item>
+                                                                    <item>Death Necklace</item>
+                                                                    <item>Stones of Sunlight</item>
+                                                                    <item>Staff of Rain</item>
+                                                                    <item>Rainbow Drop</item>
+                                                                </content>
+                                                                <selection>0</selection>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxChoice" name="IDC_HERO_INVENTORY6">
+                                                                <content>
+                                                                    <item>Nothing</item>
+                                                                    <item>Torch</item>
+                                                                    <item>Fairy Water</item>
+                                                                    <item>Wings</item>
+                                                                    <item>Dragon's Scale</item>
+                                                                    <item>Fairy Flute</item>
+                                                                    <item>Fighter's Ring</item>
+                                                                    <item>Erdrick's Token</item>
+                                                                    <item>Gwaelin's Love</item>
+                                                                    <item>Cursed Belt</item>
+                                                                    <item>Silver Harp</item>
+                                                                    <item>Death Necklace</item>
+                                                                    <item>Stones of Sunlight</item>
+                                                                    <item>Staff of Rain</item>
+                                                                    <item>Rainbow Drop</item>
+                                                                </content>
+                                                                <selection>0</selection>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxChoice" name="IDC_HERO_INVENTORY7">
+                                                                <content>
+                                                                    <item>Nothing</item>
+                                                                    <item>Torch</item>
+                                                                    <item>Fairy Water</item>
+                                                                    <item>Wings</item>
+                                                                    <item>Dragon's Scale</item>
+                                                                    <item>Fairy Flute</item>
+                                                                    <item>Fighter's Ring</item>
+                                                                    <item>Erdrick's Token</item>
+                                                                    <item>Gwaelin's Love</item>
+                                                                    <item>Cursed Belt</item>
+                                                                    <item>Silver Harp</item>
+                                                                    <item>Death Necklace</item>
+                                                                    <item>Stones of Sunlight</item>
+                                                                    <item>Staff of Rain</item>
+                                                                    <item>Rainbow Drop</item>
+                                                                </content>
+                                                                <selection>0</selection>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxChoice" name="IDC_HERO_INVENTORY8">
+                                                                <content>
+                                                                    <item>Nothing</item>
+                                                                    <item>Torch</item>
+                                                                    <item>Fairy Water</item>
+                                                                    <item>Wings</item>
+                                                                    <item>Dragon's Scale</item>
+                                                                    <item>Fairy Flute</item>
+                                                                    <item>Fighter's Ring</item>
+                                                                    <item>Erdrick's Token</item>
+                                                                    <item>Gwaelin's Love</item>
+                                                                    <item>Cursed Belt</item>
+                                                                    <item>Silver Harp</item>
+                                                                    <item>Death Necklace</item>
+                                                                    <item>Stones of Sunlight</item>
+                                                                    <item>Staff of Rain</item>
+                                                                    <item>Rainbow Drop</item>
+                                                                </content>
+                                                                <selection>0</selection>
+                                                            </object>
+                                                        </object>
+                                                    </object>
+                                                </object>
+                                            </object>
+                                        </object>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_LEFT|wxALL</flag>
+                                            <border>5</border>
+                                            <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                                <orient>wxVERTICAL</orient>
+                                                <label>Equipment</label>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+                                                    <border>0</border>
+                                                    <object class="wxFlexGridSizer">
+                                                        <cols>2</cols>
+                                                        <rows>3</rows>
+                                                        <vgap>0</vgap>
+                                                        <hgap>0</hgap>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM|wxADJUST_MINSIZE</flag>
+                                                            <border>5</border>
+                                                            <object class="wxStaticText" name="wxID_STATIC">
+                                                                <label>Weapon: </label>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxGROW|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxChoice" name="IDC_HERO_WEAPON">
+                                                                <content>
+                                                                    <item>None</item>
+                                                                    <item>Bamboo Pole</item>
+                                                                    <item>Club</item>
+                                                                    <item>Copper Sword</item>
+                                                                    <item>Hand Axe</item>
+                                                                    <item>Broad Sword</item>
+                                                                    <item>Flame Sword</item>
+                                                                    <item>Erdrick's Sword</item>
+                                                                </content>
+                                                                <selection>0</selection>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM|wxADJUST_MINSIZE</flag>
+                                                            <border>5</border>
+                                                            <object class="wxStaticText" name="wxID_STATIC">
+                                                                <label>Armor: </label>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxGROW|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxChoice" name="IDC_HERO_ARMOR">
+                                                                <content>
+                                                                    <item>None</item>
+                                                                    <item>Clothes</item>
+                                                                    <item>Leather Armor</item>
+                                                                    <item>Chain Mail</item>
+                                                                    <item>Half Plate</item>
+                                                                    <item>Full Plate</item>
+                                                                    <item>Magic Armor</item>
+                                                                    <item>Erdrick's Armor</item>
+                                                                </content>
+                                                                <selection>0</selection>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM|wxADJUST_MINSIZE</flag>
+                                                            <border>5</border>
+                                                            <object class="wxStaticText" name="wxID_STATIC">
+                                                                <label>Shield: </label>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxGROW|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxChoice" name="IDC_HERO_SHIELD">
+                                                                <content>
+                                                                    <item>None</item>
+                                                                    <item>Small Shield</item>
+                                                                    <item>Large Shield</item>
+                                                                    <item>Silver Shield</item>
+                                                                </content>
+                                                                <selection>0</selection>
+                                                            </object>
+                                                        </object>
+                                                    </object>
+                                                </object>
+                                            </object>
+                                        </object>
+                                    </object>
+                                </object>
+                            </object>
+                            <object class="notebookpage">
+                                <label>Quest</label>
+                                <object class="wxPanel" name="IDP_QUEST">
+                                    <style>wxSUNKEN_BORDER|wxTAB_TRAVERSAL</style>
+                                    <object class="wxBoxSizer">
+                                        <orient>wxVERTICAL</orient>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_LEFT|wxALL</flag>
+                                            <border>5</border>
+                                            <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                                <orient>wxVERTICAL</orient>
+                                                <label>Miscellaneous</label>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_HORIZONTAL|wxLEFT|wxRIGHT</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="IDC_QUEST_LORIKSCHAMBER">
+                                                        <label>Opened Lorik's Chamber Door</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                            </object>
+                                        </object>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_LEFT|wxALL</flag>
+                                            <border>5</border>
+                                            <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                                <orient>wxVERTICAL</orient>
+                                                <label>Status Items</label>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+                                                    <border>0</border>
+                                                    <object class="wxFlexGridSizer">
+                                                        <cols>2</cols>
+                                                        <rows>2</rows>
+                                                        <vgap>0</vgap>
+                                                        <hgap>0</hgap>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxCheckBox" name="IDC_QUEST_DRAGONSSCALE">
+                                                                <label>Equipped Dragon's Scale</label>
+                                                                <checked>0</checked>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                                                            <border>5</border>
+                                                            <object class="wxCheckBox" name="IDC_QUEST_FIGHTERSRING">
+                                                                <label>Equipped Fighter's Ring</label>
+                                                                <checked>0</checked>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT</flag>
+                                                            <border>5</border>
+                                                            <object class="wxCheckBox" name="IDC_QUEST_CURSEDBELT">
+                                                                <label>Wearing Cursed Belt</label>
+                                                                <checked>0</checked>
+                                                            </object>
+                                                        </object>
+                                                        <object class="sizeritem">
+                                                            <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT</flag>
+                                                            <border>5</border>
+                                                            <object class="wxCheckBox" name="IDC_QUEST_DEATHNECKLACE">
+                                                                <label>Wearing Death Necklace</label>
+                                                                <checked>0</checked>
+                                                            </object>
+                                                        </object>
+                                                    </object>
+                                                </object>
+                                            </object>
+                                        </object>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_LEFT|wxALL</flag>
+                                            <border>5</border>
+                                            <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                                <orient>wxVERTICAL</orient>
+                                                <label>Gwaelin</label>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_HORIZONTAL|wxLEFT|wxRIGHT</flag>
+                                                    <border>5</border>
+                                                    <object class="wxChoice" name="IDC_QUEST_GWAELIN">
+                                                        <content>
+                                                            <item>Kidnapped</item>
+                                                            <item>Rescued</item>
+                                                            <item>On Throne</item>
+                                                        </content>
+                                                        <selection>0</selection>
+                                                    </object>
+                                                </object>
+                                            </object>
+                                        </object>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_LEFT|wxALL</flag>
+                                            <border>5</border>
+                                            <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                                <orient>wxHORIZONTAL</orient>
+                                                <label>Charlock</label>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="IDC_QUEST_RAINBOWBRIDGE">
+                                                        <label>Rainbow Bridge Built</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="IDC_QUEST_HIDDENSTAIRS">
+                                                        <label>Hidden Stairs Revealed</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                            </object>
+                                        </object>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_LEFT|wxALL</flag>
+                                            <border>5</border>
+                                            <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                                <orient>wxHORIZONTAL</orient>
+                                                <label>Bosses</label>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="IDC_QUEST_GREENDRAGON">
+                                                        <label>Green Dragon</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="IDC_QUEST_GOLEM">
+                                                        <label>Golem</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="IDC_QUEST_DRAGONLORD">
+                                                        <label>Dragonlord</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                            </object>
+                                        </object>
+                                    </object>
+                                </object>
+                            </object>
+                        </object>
+                    </object>
+                </object>
+            </object>
+        </object>
+        <object class="wxStatusBar" name="IDS_DWSRAME">
+            <style>wxST_SIZEGRIP|wxNO_BORDER</style>
+            <fields>1</fields>
+            <widths></widths>
+        </object>
+    </object>
+</resource>
