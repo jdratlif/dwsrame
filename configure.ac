@@ -1,7 +1,7 @@
 dnl Initialize autoconf
-AC_INIT([dwsrame], [0.91a], [webmaster@technoplaza.net])
+AC_INIT([dwsrame], [0.91b], [webmaster@technoplaza.net])
 
-dnl require autoconf >= 2.59
+dnl require autoconf >= 2.69
 AC_PREREQ([2.69])
 
 dnl use the config.h header
@@ -23,6 +23,24 @@ AM_CONDITIONAL([WINDOWS],
 dnl check for c++ compiler and BSD install
 AC_PROG_CXX
 AC_PROG_INSTALL
+
+AC_ARG_WITH(macosx-version-min,    [  --with-macosx-version-min=VER   build binaries which require at least this OS X version], [
+        USE_MACOSX_VERSION_MIN=$withval
+    ])
+
+if test "x$USE_MACOSX_VERSION_MIN" = "xno"; then
+    USE_MACOSX_VERSION_MIN=
+elif test "x$USE_MACOSX_VERSION_MIN" = "xyes"; then
+    USE_MACOSX_VERSION_MIN=
+fi
+
+if test "x$USE_MACOSX_VERSION_MIN" != "x"; then
+    MACOSX_VERSION_MIN_OPTS="-mmacosx-version-min=$USE_MACOSX_VERSION_MIN"
+    CPPFLAGS="$CPPFLAGS $MACOSX_VERSION_MIN_OPTS"
+    CFLAGS="$CFLAGS $MACOSX_VERSION_MIN_OPTS"
+    CXXFLAGS="$CXXFLAGS $MACOSX_VERSION_MIN_OPTS"
+    LDFLAGS="$LDFLAGS $MACOSX_VERSION_MIN_OPTS"
+fi
 
 dnl tests for wxWidgets
 AM_OPTIONS_WXCONFIG
