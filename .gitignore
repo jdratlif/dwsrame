@@ -1,3 +1,4 @@
+autom4te.cache/*
 vstudio/.vs
 vstudio/Debug
 vstudio/Debug DLL
