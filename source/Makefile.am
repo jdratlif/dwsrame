@@ -1,5 +1,3 @@
-# $Id: Makefile.am,v 1.12 2008/12/17 03:51:04 jdratlif Exp $
-
 AUTOMAKE_OPTIONS = subdir-objects
 CLEANFILES = res/dwsrame.cc
 EXTRA_DIST = res/dwsrame.icns res/dwsrame.xrc \
@@ -11,7 +9,7 @@ dwsrame_SOURCES = dwsrame.cc dwsrame.hh \
 	exception/invalidsramfileexception.cc \
 	exception/invalidsramfileexception.hh \
 	model/sramfile.cc model/sramfile.hh \
-	res/dwsrame.cc \
+	res/resource.cpp \
 	view/mainframe.cc view/mainframe.hh \
 	view/sramfiletarget.cc view/sramfiletarget.hh
 
@@ -34,4 +32,3 @@ dwsrame.app: dwsrame res/dwsrame.icns res/Info.plist
 	cp res/Info.plist dwsrame.app/Contents
 	cp res/dwsrame.icns dwsrame.app/Contents/Resources
 	echo -n 'APPL????' > dwsrame.app/Contents/PkgInfo
-

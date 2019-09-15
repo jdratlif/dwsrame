@@ -3,10 +3,6 @@ EXTRA_DIST = apidocs docs/*.txt Doxyfile sav \
 	vstudio/dwsrame.sln vstudio/dwsrame.vcxproj \
 	vstudio/dwsrame.vcxproj.filters vstudio/dwsrame.vcxproj.user
     
-sav:
-	-mkdir sav
-	-cp source/res/Dragon\ Warrior\ \(U\)\ \(PRG1\).sav sav
-
 .PHONY: allclean apidocs bundle touch
 
 allclean: clean

@@ -14,8 +14,6 @@
 
 @SET_MAKE@
 
-# $Id: Makefile.am,v 1.12 2008/12/17 03:51:04 jdratlif Exp $
-
 VPATH = @srcdir@
 am__is_gnu_make = { \
   if test -z '$(MAKELEVEL)'; then \
@@ -108,14 +106,14 @@ PROGRAMS = $(bin_PROGRAMS)
 am__dwsrame_SOURCES_DIST = dwsrame.cc dwsrame.hh \
 	exception/invalidsramfileexception.cc \
 	exception/invalidsramfileexception.hh model/sramfile.cc \
-	model/sramfile.hh res/dwsrame.cc view/mainframe.cc \
+	model/sramfile.hh res/resource.cpp view/mainframe.cc \
 	view/mainframe.hh view/sramfiletarget.cc \
 	view/sramfiletarget.hh res/windows.rc
 am__dirstamp = $(am__leading_dot)dirstamp
 @WINDOWS_TRUE@am__objects_1 = res/windows.$(OBJEXT)
 am_dwsrame_OBJECTS = dwsrame.$(OBJEXT) \
 	exception/invalidsramfileexception.$(OBJEXT) \
-	model/sramfile.$(OBJEXT) res/dwsrame.$(OBJEXT) \
+	model/sramfile.$(OBJEXT) res/resource.$(OBJEXT) \
 	view/mainframe.$(OBJEXT) view/sramfiletarget.$(OBJEXT) \
 	$(am__objects_1)
 dwsrame_OBJECTS = $(am_dwsrame_OBJECTS)
@@ -137,7 +135,7 @@ depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/dwsrame.Po \
 	exception/$(DEPDIR)/invalidsramfileexception.Po \
-	model/$(DEPDIR)/sramfile.Po res/$(DEPDIR)/dwsrame.Po \
+	model/$(DEPDIR)/sramfile.Po res/$(DEPDIR)/resource.Po \
 	view/$(DEPDIR)/mainframe.Po view/$(DEPDIR)/sramfiletarget.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
@@ -241,6 +239,7 @@ WX_CONFIG_PATH = @WX_CONFIG_PATH@
 WX_CPPFLAGS = @WX_CPPFLAGS@
 WX_CXXFLAGS = @WX_CXXFLAGS@
 WX_CXXFLAGS_ONLY = @WX_CXXFLAGS_ONLY@
+WX_INCLUDES = @WX_INCLUDES@
 WX_LIBS = @WX_LIBS@
 WX_LIBS_STATIC = @WX_LIBS_STATIC@
 WX_RESCOMP = @WX_RESCOMP@
@@ -307,13 +306,13 @@ EXTRA_DIST = res/dwsrame.icns res/dwsrame.xrc \
 dwsrame_SOURCES = dwsrame.cc dwsrame.hh \
 	exception/invalidsramfileexception.cc \
 	exception/invalidsramfileexception.hh model/sramfile.cc \
-	model/sramfile.hh res/dwsrame.cc view/mainframe.cc \
+	model/sramfile.hh res/resource.cpp view/mainframe.cc \
 	view/mainframe.hh view/sramfiletarget.cc \
 	view/sramfiletarget.hh $(am__append_1)
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .cc .o .obj .rc .xrc
+.SUFFIXES: .cc .cpp .o .obj .rc .xrc
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -407,7 +406,7 @@ res/$(am__dirstamp):
 res/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) res/$(DEPDIR)
 	@: > res/$(DEPDIR)/$(am__dirstamp)
-res/dwsrame.$(OBJEXT): res/$(am__dirstamp) \
+res/resource.$(OBJEXT): res/$(am__dirstamp) \
 	res/$(DEPDIR)/$(am__dirstamp)
 view/$(am__dirstamp):
 	@$(MKDIR_P) view
@@ -439,7 +438,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dwsrame.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@exception/$(DEPDIR)/invalidsramfileexception.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@model/$(DEPDIR)/sramfile.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@res/$(DEPDIR)/dwsrame.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@res/$(DEPDIR)/resource.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@view/$(DEPDIR)/mainframe.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@view/$(DEPDIR)/sramfiletarget.Po@am__quote@ # am--include-marker
 
@@ -458,6 +457,22 @@ am--depfiles: $(am__depfiles_remade)
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
 .cc.obj:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
+
+.cpp.obj:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
 @am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
@@ -604,7 +619,7 @@ distclean: distclean-am
 		-rm -f ./$(DEPDIR)/dwsrame.Po
 	-rm -f exception/$(DEPDIR)/invalidsramfileexception.Po
 	-rm -f model/$(DEPDIR)/sramfile.Po
-	-rm -f res/$(DEPDIR)/dwsrame.Po
+	-rm -f res/$(DEPDIR)/resource.Po
 	-rm -f view/$(DEPDIR)/mainframe.Po
 	-rm -f view/$(DEPDIR)/sramfiletarget.Po
 	-rm -f Makefile
@@ -655,7 +670,7 @@ maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/dwsrame.Po
 	-rm -f exception/$(DEPDIR)/invalidsramfileexception.Po
 	-rm -f model/$(DEPDIR)/sramfile.Po
-	-rm -f res/$(DEPDIR)/dwsrame.Po
+	-rm -f res/$(DEPDIR)/resource.Po
 	-rm -f view/$(DEPDIR)/mainframe.Po
 	-rm -f view/$(DEPDIR)/sramfiletarget.Po
 	-rm -f Makefile

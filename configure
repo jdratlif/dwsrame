@@ -588,6 +588,7 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
+WX_INCLUDES
 WX_VERSION_MICRO
 WX_VERSION_MINOR
 WX_VERSION_MAJOR
@@ -699,11 +700,11 @@ ac_user_opts='
 enable_option_checking
 enable_silent_rules
 enable_dependency_tracking
-with_macosx_version_min
 with_wxdir
 with_wx_config
 with_wx_prefix
 with_wx_exec_prefix
+with_macosx_version_min
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1353,12 +1354,13 @@ Optional Features:
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
-  --with-macosx-version-min=VER   build binaries which require at least this OS X version
   --with-wxdir=PATH       Use uninstalled version of wxWidgets in PATH
   --with-wx-config=CONFIG wx-config script to use (optional)
   --with-wx-prefix=PREFIX Prefix where wxWidgets is installed (optional)
   --with-wx-exec-prefix=PREFIX
                           Exec prefix where wxWidgets is installed (optional)
+  --with-macosx-version-min=VERSION
+                          compile for this version of Mac OS X and later
 
 Some influential environment variables:
   CXX         C++ compiler command
@@ -3238,29 +3240,6 @@ fi
 
 
 
-# Check whether --with-macosx-version-min was given.
-if test "${with_macosx_version_min+set}" = set; then :
-  withval=$with_macosx_version_min;
-        USE_MACOSX_VERSION_MIN=$withval
-
-fi
-
-
-if test "x$USE_MACOSX_VERSION_MIN" = "xno"; then
-    USE_MACOSX_VERSION_MIN=
-elif test "x$USE_MACOSX_VERSION_MIN" = "xyes"; then
-    USE_MACOSX_VERSION_MIN=
-fi
-
-if test "x$USE_MACOSX_VERSION_MIN" != "x"; then
-    MACOSX_VERSION_MIN_OPTS="-mmacosx-version-min=$USE_MACOSX_VERSION_MIN"
-    CPPFLAGS="$CPPFLAGS $MACOSX_VERSION_MIN_OPTS"
-    CFLAGS="$CFLAGS $MACOSX_VERSION_MIN_OPTS"
-    CXXFLAGS="$CXXFLAGS $MACOSX_VERSION_MIN_OPTS"
-    LDFLAGS="$LDFLAGS $MACOSX_VERSION_MIN_OPTS"
-fi
-
-
 
 # Check whether --with-wxdir was given.
 if test "${with_wxdir+set}" = set; then :
@@ -3559,7 +3538,6 @@ $as_echo "no (version $WX_VERSION is not new enough)" >&6; }
 
 if test $HAVE_WXWIDGETS -eq 1; then
     CPPFLAGS="$CPPFLAGS $WX_CPPFLAGS"
-    CFLAGS="$CFLAGS $WX_CFLAGS_ONLY"
     CXXFLAGS="$CXXFLAGS $WX_CXXFLAGS_ONLY"
     LIBS="$LIBS $WX_LIBS"
 else
@@ -3569,6 +3547,32 @@ else
                   This error could also be the result of a non-standard install
                   path or a missing wx-config program." "$LINENO" 5
 fi
+
+
+# Check whether --with-macosx-version-min was given.
+if test "${with_macosx_version_min+set}" = set; then :
+  withval=$with_macosx_version_min;
+fi
+
+
+if test "x$with_macosx_version_min" != "x"; then
+    MACOSX_VERSION_MIN_OPTS="-mmacosx-version-min=$with_macosx_version_min"
+    CPPFLAGS="$CPPFLAGS $MACOSX_VERSION_MIN_OPTS"
+    CFLAGS="$CFLAGS $MACOSX_VERSION_MIN_OPTS"
+    CXXFLAGS="$CXXFLAGS $MACOSX_VERSION_MIN_OPTS"
+    LDFLAGS="$LDFLAGS $MACOSX_VERSION_MIN_OPTS"
+fi
+
+WX_INCLUDES=""
+for opt in $WX_CPPFLAGS
+do
+    case "$opt" in
+        -I*)
+            WX_INCLUDES="$WX_INCLUDES $opt"
+            ;;
+    esac
+done
+
 
 ac_config_files="$ac_config_files Makefile source/Makefile"
 
