@@ -1,16 +1,14 @@
-dnl $Id: configure.ac,v 1.10 2008/12/17 03:51:04 jdratlif Exp $
-
 dnl Initialize autoconf
 AC_INIT([dwsrame], [0.91a], [webmaster@technoplaza.net])
 
 dnl require autoconf >= 2.59
-AC_PREREQ([2.59])
+AC_PREREQ([2.69])
 
 dnl use the config.h header
 AC_CONFIG_HEADERS([config.h])
 
 dnl initialize automake
-AM_INIT_AUTOMAKE([1.9.6 dist-bzip2])
+AM_INIT_AUTOMAKE([1.16.1 dist-bzip2])
 
 dnl host system check
 AC_CANONICAL_HOST
@@ -32,6 +30,7 @@ AM_PATH_WXCONFIG([2.8.0], HAVE_WXWIDGETS=1, HAVE_WXWIDGETS=0)
 
 if test $HAVE_WXWIDGETS -eq 1; then
     CPPFLAGS="$CPPFLAGS $WX_CPPFLAGS"
+    CFLAGS="$CFLAGS $WX_CFLAGS_ONLY"
     CXXFLAGS="$CXXFLAGS $WX_CXXFLAGS_ONLY"
     LIBS="$LIBS $WX_LIBS"
 else
@@ -42,18 +41,6 @@ else
                   path or a missing wx-config program.])
 fi
 
-WX_INCLUDES=""
-for opt in $WX_CPPFLAGS
-do
-    case "$opt" in
-        -I*)
-            WX_INCLUDES="$WX_INCLUDES $opt"
-            ;;
-    esac
-done
-AC_SUBST(WX_INCLUDES)
-
 dnl configure files to produce
 AC_CONFIG_FILES([Makefile source/Makefile])
 AC_OUTPUT
-

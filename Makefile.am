@@ -1,8 +1,7 @@
-# $Id: Makefile.am,v 1.10 2008/12/17 03:51:04 jdratlif Exp $
-
 SUBDIRS = source
 EXTRA_DIST = apidocs docs/*.txt Doxyfile sav \
-	vstudio/dwsrame/dwsrame.sln vstudio/dwsrame/dwsrame.vcproj
+	vstudio/dwsrame.sln vstudio/dwsrame.vcxproj \
+	vstudio/dwsrame.vcxproj.filters vstudio/dwsrame.vcxproj.user
     
 sav:
 	-mkdir sav
@@ -24,6 +23,6 @@ bundle:
 
 touch:
 	-find -iname "*.cc" -exec touch {} \;
+	-find -iname "*.cpp" -exec touch {} \;
 	-find -iname "*.hh" -exec touch {} \;
 	-find -iname "*.xrc" -exec touch {} \;
-
