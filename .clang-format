@@ -1,0 +1,6 @@
+---
+BasedOnStyle: LLVM
+IndentCaseLabels: true
+IndentPPDirectives: BeforeHash
+IndentWidth: 4
+NamespaceIndentation: All
