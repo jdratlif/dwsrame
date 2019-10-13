@@ -53,8 +53,7 @@ const std::pair<int, int> SRAMFile::QUEST_OFFSETS[] = {
     std::pair<int, int>(0xD, 0x40), // green dragon
 };
 
-SRAMFile::SRAMFile(const wxString &filename) throw(InvalidSRAMFileException)
-    : modified(false) {
+SRAMFile::SRAMFile(const wxString &filename) : modified(false) {
     std::ifstream file(filename.mb_str(),
                        std::ios_base::in | std::ios_base::binary);
 
@@ -130,7 +129,7 @@ SRAMFile::SRAMFile(const wxString &filename) throw(InvalidSRAMFileException)
     $FC4C:60        RTS             ; return
 */
 
-wxUint16 SRAMFile::checksum(int game) const {
+auto SRAMFile::checksum(int game) const -> wxUint16 {
     wxASSERT((game >= 0) && (game < 3));
 
     unsigned char cl = 0x1D, ch = 0x1D, carry = 0;
@@ -169,121 +168,121 @@ wxUint16 SRAMFile::checksum(int game) const {
     return (cl | (ch << 8));
 }
 
-char SRAMFile::fromASCII(char asciiChar) const {
+auto SRAMFile::fromASCII(char asciiChar) const -> char {
     char ch;
 
     switch (asciiChar) {
-    case '0':
-    case '1':
-    case '2':
-    case '3':
-    case '4':
-    case '5':
-    case '6':
-    case '7':
-    case '8':
-    case '9':
-        ch = static_cast<char>(asciiChar - '0');
-        break;
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+            ch = static_cast<char>(asciiChar - '0');
+            break;
 
-    case 'a':
-    case 'b':
-    case 'c':
-    case 'd':
-    case 'e':
-    case 'f':
-    case 'g':
-    case 'h':
-    case 'i':
-    case 'j':
-    case 'k':
-    case 'l':
-    case 'm':
-    case 'n':
-    case 'o':
-    case 'p':
-    case 'q':
-    case 'r':
-    case 's':
-    case 't':
-    case 'u':
-    case 'v':
-    case 'w':
-    case 'x':
-    case 'y':
-    case 'z':
-        ch = static_cast<char>(asciiChar - 'a' + 0xA);
-        break;
+        case 'a':
+        case 'b':
+        case 'c':
+        case 'd':
+        case 'e':
+        case 'f':
+        case 'g':
+        case 'h':
+        case 'i':
+        case 'j':
+        case 'k':
+        case 'l':
+        case 'm':
+        case 'n':
+        case 'o':
+        case 'p':
+        case 'q':
+        case 'r':
+        case 's':
+        case 't':
+        case 'u':
+        case 'v':
+        case 'w':
+        case 'x':
+        case 'y':
+        case 'z':
+            ch = static_cast<char>(asciiChar - 'a' + 0xA);
+            break;
 
-    case 'A':
-    case 'B':
-    case 'C':
-    case 'D':
-    case 'E':
-    case 'F':
-    case 'G':
-    case 'H':
-    case 'I':
-    case 'J':
-    case 'K':
-    case 'L':
-    case 'M':
-    case 'N':
-    case 'O':
-    case 'P':
-    case 'Q':
-    case 'R':
-    case 'S':
-    case 'T':
-    case 'U':
-    case 'V':
-    case 'W':
-    case 'X':
-    case 'Y':
-    case 'Z':
-        ch = static_cast<char>(asciiChar - 'A' + 0x24);
-        break;
+        case 'A':
+        case 'B':
+        case 'C':
+        case 'D':
+        case 'E':
+        case 'F':
+        case 'G':
+        case 'H':
+        case 'I':
+        case 'J':
+        case 'K':
+        case 'L':
+        case 'M':
+        case 'N':
+        case 'O':
+        case 'P':
+        case 'Q':
+        case 'R':
+        case 'S':
+        case 'T':
+        case 'U':
+        case 'V':
+        case 'W':
+        case 'X':
+        case 'Y':
+        case 'Z':
+            ch = static_cast<char>(asciiChar - 'A' + 0x24);
+            break;
 
-    case '\'':
-        ch = 0x40;
-        break;
-    case '.':
-        ch = 0x47;
-        break;
-    case ',':
-        ch = 0x48;
-        break;
-    case '-':
-        ch = 0x49;
-        break;
-    case '?':
-        ch = 0x4B;
-        break;
-    case '!':
-        ch = 0x4C;
-        break;
-    case ')':
-        ch = 0x4E;
-        break;
-    case '(':
-        ch = 0x4F;
-        break;
-    case ' ':
-        ch = 0x60;
-        break;
+        case '\'':
+            ch = 0x40;
+            break;
+        case '.':
+            ch = 0x47;
+            break;
+        case ',':
+            ch = 0x48;
+            break;
+        case '-':
+            ch = 0x49;
+            break;
+        case '?':
+            ch = 0x4B;
+            break;
+        case '!':
+            ch = 0x4C;
+            break;
+        case ')':
+            ch = 0x4E;
+            break;
+        case '(':
+            ch = 0x4F;
+            break;
+        case ' ':
+            ch = 0x60;
+            break;
 
-    default:
-        // we should NEVER reach the default case
-        wxASSERT(false);
+        default:
+            // we should NEVER reach the default case
+            wxASSERT(false);
 
-        ch = 0x60;
-        break;
+            ch = 0x60;
+            break;
     }
 
     return ch;
 }
 
-bool SRAMFile::save(const wxString &filename) {
+auto SRAMFile::save(const wxString &filename) -> bool {
     std::ofstream file(filename.mb_str(),
                        std::ios_base::out | std::ios_base::binary);
 
@@ -303,123 +302,122 @@ bool SRAMFile::save(const wxString &filename) {
     return true;
 }
 
-char SRAMFile::toASCII(char dwChar) const {
+auto SRAMFile::toASCII(char dwChar) const -> char {
     char ch;
 
     switch (dwChar) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-        ch = static_cast<char>('0' + dwChar);
-        break;
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            ch = static_cast<char>('0' + dwChar);
+            break;
 
-    case 10:
-    case 11:
-    case 12:
-    case 13:
-    case 14:
-    case 15:
-    case 16:
-    case 17:
-    case 18:
-    case 19:
-    case 20:
-    case 21:
-    case 22:
-    case 23:
-    case 24:
-    case 25:
-    case 26:
-    case 27:
-    case 28:
-    case 29:
-    case 30:
-    case 31:
-    case 32:
-    case 33:
-    case 34:
-    case 35:
-        ch = static_cast<char>('a' + dwChar - 0xA);
-        break;
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+        case 14:
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 20:
+        case 21:
+        case 22:
+        case 23:
+        case 24:
+        case 25:
+        case 26:
+        case 27:
+        case 28:
+        case 29:
+        case 30:
+        case 31:
+        case 32:
+        case 33:
+        case 34:
+        case 35:
+            ch = static_cast<char>('a' + dwChar - 0xA);
+            break;
 
-    case 36:
-    case 37:
-    case 38:
-    case 39:
-    case 40:
-    case 41:
-    case 42:
-    case 43:
-    case 44:
-    case 45:
-    case 46:
-    case 47:
-    case 48:
-    case 49:
-    case 50:
-    case 51:
-    case 52:
-    case 53:
-    case 54:
-    case 55:
-    case 56:
-    case 57:
-    case 58:
-    case 59:
-    case 60:
-    case 61:
-        ch = static_cast<char>('A' + dwChar - 0x24);
-        break;
+        case 36:
+        case 37:
+        case 38:
+        case 39:
+        case 40:
+        case 41:
+        case 42:
+        case 43:
+        case 44:
+        case 45:
+        case 46:
+        case 47:
+        case 48:
+        case 49:
+        case 50:
+        case 51:
+        case 52:
+        case 53:
+        case 54:
+        case 55:
+        case 56:
+        case 57:
+        case 58:
+        case 59:
+        case 60:
+        case 61:
+            ch = static_cast<char>('A' + dwChar - 0x24);
+            break;
 
-    case 0x40:
-        ch = '\'';
-        break;
-    case 0x47:
-        ch = '.';
-        break;
-    case 0x48:
-        ch = ',';
-        break;
-    case 0x49:
-        ch = '-';
-        break;
-    case 0x4B:
-        ch = '?';
-        break;
-    case 0x4C:
-        ch = '!';
-        break;
-    case 0x4E:
-        ch = ')';
-        break;
-    case 0x4F:
-        ch = '(';
-        break;
-    case 0x60:
-        ch = ' ';
-        break;
+        case 0x40:
+            ch = '\'';
+            break;
+        case 0x47:
+            ch = '.';
+            break;
+        case 0x48:
+            ch = ',';
+            break;
+        case 0x49:
+            ch = '-';
+            break;
+        case 0x4B:
+            ch = '?';
+            break;
+        case 0x4C:
+            ch = '!';
+            break;
+        case 0x4E:
+            ch = ')';
+            break;
+        case 0x4F:
+            ch = '(';
+            break;
+        case 0x60:
+            ch = ' ';
+            break;
 
-    default:
-        // we should NEVER get to the default case
-        wxASSERT(false);
+        default:
+            // we should NEVER get to the default case
+            wxASSERT(false);
 
-        ch = '_';
-        break;
+            ch = '_';
+            break;
     }
 
     return ch;
 }
 
 void SRAMFile::setArmor(enum dw_armor armor) {
-    unsigned char *ptr =
-        reinterpret_cast<unsigned char *>(offset + EQUIPMENT_OFFSET);
+    auto *ptr = reinterpret_cast<unsigned char *>(offset + EQUIPMENT_OFFSET);
 
     *ptr &= ~ARMOR_MASK;
     *ptr |= armor;
@@ -427,10 +425,10 @@ void SRAMFile::setArmor(enum dw_armor armor) {
     modified = true;
 }
 
-wxUint16 SRAMFile::getChecksum(int game) const {
+auto SRAMFile::getChecksum(int game) const -> wxUint16 {
     wxASSERT((game >= 0) && (game < 3));
 
-    const wxUint16 *ptr = reinterpret_cast<const wxUint16 *>(
+    const auto *ptr = reinterpret_cast<const wxUint16 *>(
         sram + GAME_OFFSET + (GAME_SIZE * game) + CHECKSUM_OFFSET);
 
     return wxUINT16_SWAP_ON_BE(*ptr);
@@ -439,21 +437,20 @@ wxUint16 SRAMFile::getChecksum(int game) const {
 void SRAMFile::setChecksum(int game, wxUint16 checksum) {
     wxASSERT((game >= 0) && (game < 3));
 
-    wxUint16 *ptr = reinterpret_cast<wxUint16 *>(
+    auto *ptr = reinterpret_cast<wxUint16 *>(
         sram + GAME_OFFSET + (GAME_SIZE * game) + CHECKSUM_OFFSET);
 
     *ptr = wxUINT16_SWAP_ON_BE(checksum);
 }
 
-wxUint16 SRAMFile::getExperience() const {
-    const wxUint16 *ptr =
-        reinterpret_cast<const wxUint16 *>(offset + EXP_OFFSET);
+auto SRAMFile::getExperience() const -> wxUint16 {
+    const auto *ptr = reinterpret_cast<const wxUint16 *>(offset + EXP_OFFSET);
 
     return wxUINT16_SWAP_ON_BE(*ptr);
 }
 
 void SRAMFile::setExperience(wxUint16 experience) {
-    wxUint16 *ptr = reinterpret_cast<wxUint16 *>(offset + EXP_OFFSET);
+    auto *ptr = reinterpret_cast<wxUint16 *>(offset + EXP_OFFSET);
 
     *ptr = wxUINT16_SWAP_ON_BE(experience);
 
@@ -469,15 +466,14 @@ void SRAMFile::setGame(int game) {
                                                (GAME_SIZE * game));
 }
 
-wxUint16 SRAMFile::getGold() const {
-    const wxUint16 *ptr =
-        reinterpret_cast<const wxUint16 *>(offset + GOLD_OFFSET);
+auto SRAMFile::getGold() const -> wxUint16 {
+    const auto *ptr = reinterpret_cast<const wxUint16 *>(offset + GOLD_OFFSET);
 
     return wxUINT16_SWAP_ON_BE(*ptr);
 }
 
 void SRAMFile::setGold(wxUint16 gold) {
-    wxUint16 *ptr = reinterpret_cast<wxUint16 *>(offset + GOLD_OFFSET);
+    auto *ptr = reinterpret_cast<wxUint16 *>(offset + GOLD_OFFSET);
 
     *ptr = wxUINT16_SWAP_ON_BE(gold);
 
@@ -494,20 +490,18 @@ void SRAMFile::setHP(unsigned int hp) {
     modified = true;
 }
 
-enum dw_item SRAMFile::getItem(int number) const {
-    unsigned char value =
-        static_cast<unsigned char>(*(offset + ITEM_OFFSET + (number / 2)));
+auto SRAMFile::getItem(int number) const -> enum dw_item {
+    auto value = static_cast<unsigned char>(*(offset + ITEM_OFFSET +
+                                              (number / 2)));
 
-    if ((number % 2) == 1) {
-        value >>= 4;
-    }
+    if ((number % 2) == 1){value >>= 4;}
 
-    return static_cast<enum dw_item>(value & 0xF);
+return static_cast<enum dw_item>(value & 0xF);
 }
 
 void SRAMFile::setItem(enum dw_item item, int number) {
     unsigned char value = item;
-    unsigned char *ptr =
+    auto *ptr =
         reinterpret_cast<unsigned char *>(offset + ITEM_OFFSET + (number / 2));
 
     if ((number % 2) == 1) {
@@ -532,7 +526,7 @@ void SRAMFile::setMP(unsigned int mp) {
     modified = true;
 }
 
-wxString SRAMFile::getName() const {
+auto SRAMFile::getName() const -> wxString {
     wxString name;
     const char *ptr = reinterpret_cast<const char *>(offset + NAME_OFFSET);
 
@@ -579,8 +573,7 @@ void SRAMFile::setQuestMarker(enum dw_quest marker, bool set) {
 }
 
 void SRAMFile::setShield(enum dw_shield shield) {
-    unsigned char *ptr =
-        reinterpret_cast<unsigned char *>(offset + EQUIPMENT_OFFSET);
+    auto *ptr = reinterpret_cast<unsigned char *>(offset + EQUIPMENT_OFFSET);
 
     *ptr &= ~SHIELD_MASK;
     *ptr |= shield;
@@ -589,8 +582,7 @@ void SRAMFile::setShield(enum dw_shield shield) {
 }
 
 void SRAMFile::setWeapon(enum dw_weapon weapon) {
-    unsigned char *ptr =
-        reinterpret_cast<unsigned char *>(offset + EQUIPMENT_OFFSET);
+    auto *ptr = reinterpret_cast<unsigned char *>(offset + EQUIPMENT_OFFSET);
 
     *ptr &= ~WEAPON_MASK;
     *ptr |= weapon;

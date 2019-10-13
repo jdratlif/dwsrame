@@ -46,14 +46,14 @@ namespace dwsrame {
          *
          * @return The error code.
          */
-        enum isfe_error getError() const;
+        auto getError() const -> enum isfe_error;
     };
 
     inline InvalidSRAMFileException::InvalidSRAMFileException(
         enum isfe_error error)
         : std::runtime_error("InvalidSRAMFileException"), error(error) {}
 
-    inline enum isfe_error InvalidSRAMFileException::getError() const {
+    inline auto InvalidSRAMFileException::getError() const -> enum isfe_error {
         return error;
     }
 } // namespace dwsrame

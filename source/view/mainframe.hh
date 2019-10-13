@@ -22,6 +22,8 @@
 #ifndef _DWSRAME_MAINFRAME_HH_
 #define _DWSRAME_MAINFRAME_HH_
 
+#include <wx/frame.h>
+
 namespace dwsrame {
     class SRAMFile;
 
@@ -42,7 +44,7 @@ namespace dwsrame {
          *
          * @return true if the file was closed; false otherwise.
          */
-        bool closeSRAM();
+        auto closeSRAM() -> bool;
 
         /**
          * Loads game data from the SRAM.
@@ -68,14 +70,14 @@ namespace dwsrame {
          *
          * @return true if the SRAM was saved; false otherwise.
          */
-        bool saveSRAM();
+        auto saveSRAM() -> bool;
 
         /**
          * Checks the fields for valid data.
          *
          * @return true if all the fields are valid; false otherwise.
          */
-        bool hasValidData();
+        auto hasValidData() -> bool;
 
         /**
          * Called when the hero's armor is changed.

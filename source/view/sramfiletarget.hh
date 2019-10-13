@@ -47,7 +47,8 @@ namespace dwsrame {
          *
          * @return true if the drop was accepted; false otherwise.
          */
-        bool OnDropFiles(wxCoord, wxCoord, const wxArrayString &files);
+        auto OnDropFiles(wxCoord, wxCoord, const wxArrayString &files)
+            -> bool override;
     };
 
     inline SRAMFileTarget::SRAMFileTarget(MainFrame *frame) : frame(frame) {}

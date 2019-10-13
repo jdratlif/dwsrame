@@ -40,8 +40,8 @@
 
 using namespace dwsrame;
 
-MainFrame::MainFrame() : sram(0), enableEvents(true) {
-    SetParent(NULL);
+MainFrame::MainFrame() : sram(nullptr), enableEvents(true) {
+    SetParent(nullptr);
 
     loadXRC();
     GetSizer()->SetSizeHints(this);
@@ -143,7 +143,7 @@ MainFrame::MainFrame() : sram(0), enableEvents(true) {
     XRCCTRL(*this, "IDN_DWSRAME", wxNotebook)->Show(false);
 }
 
-bool MainFrame::closeSRAM() {
+auto MainFrame::closeSRAM() -> bool {
     if (sram) {
         if (sram->isModified()) {
             int answer = wxMessageBox(
@@ -160,7 +160,7 @@ bool MainFrame::closeSRAM() {
         }
 
         delete sram;
-        sram = 0;
+        sram = nullptr;
     }
 
     XRCCTRL(*this, "IDN_DWSRAME", wxNotebook)->Show(false);
@@ -284,15 +284,15 @@ void MainFrame::openSRAM(const wxString &filename) {
         wxString error;
 
         switch (e.getError()) {
-        case ISFE_FILENOTFOUND:
-            error = wxT("File Not Found");
-            break;
-        case ISFE_INVALIDSIZE:
-            error = wxT("Invalid SRAM File Size");
-            break;
-        case ISFE_NOVALIDGAMES:
-            error = wxT("No Games Exist");
-            break;
+            case ISFE_FILENOTFOUND:
+                error = wxT("File Not Found");
+                break;
+            case ISFE_INVALIDSIZE:
+                error = wxT("Invalid SRAM File Size");
+                break;
+            case ISFE_NOVALIDGAMES:
+                error = wxT("No Games Exist");
+                break;
         }
 
         wxMessageBox(error, wxT("Error: Invalid SRAM file"),
@@ -300,7 +300,7 @@ void MainFrame::openSRAM(const wxString &filename) {
     }
 }
 
-bool MainFrame::saveSRAM() {
+auto MainFrame::saveSRAM() -> bool {
     wxASSERT(sram);
 
     if (!hasValidData()) {
@@ -317,7 +317,7 @@ bool MainFrame::saveSRAM() {
     return true;
 }
 
-bool MainFrame::hasValidData() {
+auto MainFrame::hasValidData() -> bool {
     wxString string;
     long number = 0;
 
@@ -467,20 +467,20 @@ void MainFrame::onGwaelinChange(wxCommandEvent &) {
     int value = XRCCTRL(*this, "IDC_QUEST_GWAELIN", wxChoice)->GetSelection();
 
     switch (value) {
-    case 0:
-        sram->setQuestMarker(DW_HOLDINGGWAELIN, false);
-        sram->setQuestMarker(DW_GWAELINONTHRONE, false);
-        break;
+        case 0:
+            sram->setQuestMarker(DW_HOLDINGGWAELIN, false);
+            sram->setQuestMarker(DW_GWAELINONTHRONE, false);
+            break;
 
-    case 1:
-        sram->setQuestMarker(DW_HOLDINGGWAELIN, true);
-        sram->setQuestMarker(DW_GWAELINONTHRONE, false);
-        break;
+        case 1:
+            sram->setQuestMarker(DW_HOLDINGGWAELIN, true);
+            sram->setQuestMarker(DW_GWAELINONTHRONE, false);
+            break;
 
-    case 2:
-        sram->setQuestMarker(DW_HOLDINGGWAELIN, false);
-        sram->setQuestMarker(DW_GWAELINONTHRONE, true);
-        break;
+        case 2:
+            sram->setQuestMarker(DW_HOLDINGGWAELIN, false);
+            sram->setQuestMarker(DW_GWAELINONTHRONE, true);
+            break;
     }
 }
 

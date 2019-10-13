@@ -34,7 +34,8 @@
 
 using namespace dwsrame;
 
-bool SRAMFileTarget::OnDropFiles(wxCoord, wxCoord, const wxArrayString &files) {
+auto SRAMFileTarget::OnDropFiles(wxCoord, wxCoord, const wxArrayString &files)
+    -> bool {
     if (files.GetCount() > 0) {
         frame->openSRAM(files[0]);
     }

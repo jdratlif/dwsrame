@@ -22,6 +22,8 @@
 #ifndef _DWSRAME_HH_
 #define _DWSRAME_HH_
 
+#include <wx/app.h>
+
 /// The project namespace
 namespace dwsrame {
     class MainFrame;
@@ -39,7 +41,7 @@ namespace dwsrame {
          *
          * @return true on successful initialization; false otherwise.
          */
-        virtual bool OnInit();
+        auto OnInit() -> bool override;
     };
 
     DECLARE_APP(dwsrameApp)

@@ -39,7 +39,7 @@ using namespace dwsrame;
 // prototype for InitXmlResource function
 void InitXmlResource();
 
-bool dwsrameApp::OnInit() {
+auto dwsrameApp::OnInit() -> bool {
     // initialize the XRC resources
     wxXmlResource::Get()->InitAllHandlers();
     InitXmlResource();

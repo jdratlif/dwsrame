@@ -23,6 +23,7 @@
 #define _DWSRAME_SRAMFILE_HH_
 
 #include <utility>
+#include <wx/defs.h>
 
 #include "exception/invalidsramfileexception.hh"
 
@@ -169,12 +170,12 @@ namespace dwsrame {
          *
          * @return The checksum.
          */
-        wxUint16 checksum(int game) const;
+        auto checksum(int game) const -> wxUint16;
 
         /**
          * Converts an ASCII character to the Dragon Warrior alphabet.
          */
-        char fromASCII(char asciiChar) const;
+        auto fromASCII(char asciiChar) const -> char;
 
         /**
          * Converts a Dragon Warrior alphabetic character to ASCII.
@@ -183,7 +184,7 @@ namespace dwsrame {
          *
          * @return The ASCII character.
          */
-        char toASCII(char dwChar) const;
+        auto toASCII(char dwChar) const -> char;
 
         /**
          * Gets the checksum for one of the save games.
@@ -192,7 +193,7 @@ namespace dwsrame {
          *
          * @return The checksum.
          */
-        wxUint16 getChecksum(int game) const;
+        auto getChecksum(int game) const -> wxUint16;
 
         /**
          * Sets the checksum for one of the save games.
@@ -211,7 +212,7 @@ namespace dwsrame {
          * @throws InvalidSRAMFileException if the filename is not a valid
          *     Dragon Warrior SRAM file.
          */
-        SRAMFile(const wxString &filename) throw(InvalidSRAMFileException);
+        SRAMFile(const wxString &filename);
 
         /**
          * Saves this SRAMfile back to disk.
@@ -220,14 +221,14 @@ namespace dwsrame {
          *
          * @return true on success; false otherwise.
          */
-        bool save(const wxString &filename);
+        auto save(const wxString &filename) -> bool;
 
         /**
          * Gets the hero's armor.
          *
          * @return The armor.
          */
-        enum dw_armor getArmor() const;
+        auto getArmor() const -> enum dw_armor;
 
         /**
          * Sets the hero's armor.
@@ -241,7 +242,7 @@ namespace dwsrame {
          *
          * @return The experience.
          */
-        wxUint16 getExperience() const;
+        auto getExperience() const -> wxUint16;
 
         /**
          * Sets the hero's experience.
@@ -255,7 +256,7 @@ namespace dwsrame {
          *
          * @return The game.
          */
-        int getGame() const;
+        auto getGame() const -> int;
 
         /**
          * Sets the game currently being edited.
@@ -269,7 +270,7 @@ namespace dwsrame {
          *
          * @return The gold.
          */
-        wxUint16 getGold() const;
+        auto getGold() const -> wxUint16;
 
         /**
          * Sets the hero's gold.
@@ -283,7 +284,7 @@ namespace dwsrame {
          *
          * @return The herbs.
          */
-        int getHerbs() const;
+        auto getHerbs() const -> int;
 
         /**
          * Sets the hero's herbs.
@@ -297,7 +298,7 @@ namespace dwsrame {
          *
          * @return The current HP.
          */
-        unsigned int getHP() const;
+        auto getHP() const -> unsigned int;
 
         /**
          * Sets the hero's current HP.
@@ -313,7 +314,7 @@ namespace dwsrame {
          *
          * @return The item.
          */
-        enum dw_item getItem(int number) const;
+        auto getItem(int number) const -> enum dw_item;
 
         /**
          * Sets one of the hero's items.
@@ -328,7 +329,7 @@ namespace dwsrame {
          *
          * @return The keys.
          */
-        int getKeys() const;
+        auto getKeys() const -> int;
 
         /**
          * Sets the hero's keys.
@@ -342,14 +343,14 @@ namespace dwsrame {
          *
          * @return true if modified; false otherwise.
          */
-        bool isModified() const;
+        auto isModified() const -> bool;
 
         /**
          * Gets the hero's current MP.
          *
          * @return The current MP.
          */
-        unsigned int getMP() const;
+        auto getMP() const -> unsigned int;
 
         /**
          * Sets the hero's current MP.
@@ -363,7 +364,7 @@ namespace dwsrame {
          *
          * @return The name.
          */
-        wxString getName() const;
+        auto getName() const -> wxString;
 
         /**
          * Sets the hero's name.
@@ -379,7 +380,7 @@ namespace dwsrame {
          *
          * @return true if the quest marker is set, false otherwise.
          */
-        bool getQuestMarker(enum dw_quest marker) const;
+        auto getQuestMarker(enum dw_quest marker) const -> bool;
 
         /**
          * Sets one of the quest markers.
@@ -394,7 +395,7 @@ namespace dwsrame {
          *
          * @return The shield.
          */
-        enum dw_shield getShield() const;
+        auto getShield() const -> enum dw_shield;
 
         /**
          * Sets the hero's shield.
@@ -410,14 +411,14 @@ namespace dwsrame {
          *
          * @return true if valid; false otherwise.
          */
-        bool isValid(int game) const;
+        auto isValid(int game) const -> bool;
 
         /**
          * Gets the hero's weapon.
          *
          * @return The weapon.
          */
-        enum dw_weapon getWeapon() const;
+        auto getWeapon() const -> enum dw_weapon;
 
         /**
          * Sets the hero's weapon.
@@ -427,39 +428,45 @@ namespace dwsrame {
         void setWeapon(enum dw_weapon weapon);
     };
 
-    inline enum dw_armor SRAMFile::getArmor() const {
+    inline auto SRAMFile::getArmor() const -> enum dw_armor {
         return static_cast<enum dw_armor>(offset[EQUIPMENT_OFFSET] &
                                           ARMOR_MASK);
     }
 
-    inline int SRAMFile::getGame() const { return game; }
+    inline auto SRAMFile::getGame() const -> int { return game; }
 
-    inline int SRAMFile::getHerbs() const { return offset[HERBS_OFFSET]; }
+    inline auto SRAMFile::getHerbs() const -> int {
+        return offset[HERBS_OFFSET];
+    }
 
-    inline unsigned int SRAMFile::getHP() const { return offset[HP_OFFSET]; }
+    inline auto SRAMFile::getHP() const -> unsigned int {
+        return offset[HP_OFFSET];
+    }
 
-    inline int SRAMFile::getKeys() const { return offset[KEYS_OFFSET]; }
+    inline auto SRAMFile::getKeys() const -> int { return offset[KEYS_OFFSET]; }
 
-    inline bool SRAMFile::isModified() const { return modified; }
+    inline auto SRAMFile::isModified() const -> bool { return modified; }
 
-    inline unsigned int SRAMFile::getMP() const { return offset[MP_OFFSET]; }
+    inline auto SRAMFile::getMP() const -> unsigned int {
+        return offset[MP_OFFSET];
+    }
 
-    inline bool SRAMFile::getQuestMarker(enum dw_quest marker) const {
+    inline auto SRAMFile::getQuestMarker(enum dw_quest marker) const -> bool {
         return offset[QUEST_OFFSETS[marker].first] &
                QUEST_OFFSETS[marker].second;
     }
 
-    inline enum dw_shield SRAMFile::getShield() const {
+    inline auto SRAMFile::getShield() const -> enum dw_shield {
         return static_cast<enum dw_shield>(offset[EQUIPMENT_OFFSET] &
                                            SHIELD_MASK);
     }
 
-    inline bool SRAMFile::isValid(int game) const {
+    inline auto SRAMFile::isValid(int game) const -> bool {
         wxASSERT((game >= 0) && (game < 3));
         return valid[game];
     }
 
-    inline enum dw_weapon SRAMFile::getWeapon() const {
+    inline auto SRAMFile::getWeapon() const -> enum dw_weapon {
         return static_cast<enum dw_weapon>(offset[EQUIPMENT_OFFSET] &
                                            WEAPON_MASK);
     }
