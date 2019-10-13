@@ -19,9 +19,6 @@
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: invalidsramfileexception.cc,v 1.3 2008/12/15 22:48:11 jdratlif Exp $
-
 #include "exception/invalidsramfileexception.hh"
 
 using namespace dwsrame;
-

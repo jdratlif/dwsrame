@@ -18,8 +18,6 @@
  * dwsrame; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
- 
-// $Id: sramfiletarget.hh,v 1.3 2008/12/15 22:48:11 jdratlif Exp $
 
 #ifndef _DWSRAME_SRAMFILETARGET_HH_
 #define _DWSRAME_SRAMFILETARGET_HH_
@@ -28,20 +26,20 @@
 
 namespace dwsrame {
     class MainFrame;
-    
+
     /// Class to implement a drop target for SRAM files
     class SRAMFileTarget : public wxFileDropTarget {
-    private:
+      private:
         MainFrame *frame;
-        
-    public:
+
+      public:
         /**
          * Creates a new SRAMFileTarget.
          *
          * @param frame The MainFrame to send files to.
          */
         SRAMFileTarget(MainFrame *frame);
-        
+
         /**
          * Called when files are dropped on the associated MainFrame.
          *
@@ -51,9 +49,8 @@ namespace dwsrame {
          */
         bool OnDropFiles(wxCoord, wxCoord, const wxArrayString &files);
     };
-    
+
     inline SRAMFileTarget::SRAMFileTarget(MainFrame *frame) : frame(frame) {}
-}
+} // namespace dwsrame
 
 #endif
-

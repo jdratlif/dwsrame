@@ -19,23 +19,21 @@
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: dwsrame.hh,v 1.4 2008/12/15 22:48:11 jdratlif Exp $
-
 #ifndef _DWSRAME_HH_
 #define _DWSRAME_HH_
 
 /// The project namespace
 namespace dwsrame {
     class MainFrame;
-    
+
     /// The main application class
     class dwsrameApp : public wxApp {
         DECLARE_CLASS(dwsrameApp)
-        
-    private:
+
+      private:
         MainFrame *frame;
-        
-    public:
+
+      public:
         /**
          * Called to initialize the application.
          *
@@ -43,9 +41,8 @@ namespace dwsrame {
          */
         virtual bool OnInit();
     };
-    
+
     DECLARE_APP(dwsrameApp)
-}
+} // namespace dwsrame
 
 #endif
-

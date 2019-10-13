@@ -19,8 +19,6 @@
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: mainframe.cc,v 1.18 2008/12/15 22:48:11 jdratlif Exp $
-
 #ifdef HAVE_CONFIG_H
     #include <config.h>
 #endif
@@ -44,57 +42,103 @@ using namespace dwsrame;
 
 MainFrame::MainFrame() : sram(0), enableEvents(true) {
     SetParent(NULL);
-    
+
     loadXRC();
     GetSizer()->SetSizeHints(this);
     Centre();
-    
+
     // add DnD support target
     SetDropTarget(new SRAMFileTarget(this));
-    
+
     // create name validator
     wxTextValidator validator(wxFILTER_INCLUDE_CHAR_LIST);
     wxArrayString letters;
-    
-    letters.Add(wxT("0")); letters.Add(wxT("1")); letters.Add(wxT("2"));
-    letters.Add(wxT("3")); letters.Add(wxT("4")); letters.Add(wxT("5"));
-    letters.Add(wxT("6")); letters.Add(wxT("7")); letters.Add(wxT("8"));
+
+    letters.Add(wxT("0"));
+    letters.Add(wxT("1"));
+    letters.Add(wxT("2"));
+    letters.Add(wxT("3"));
+    letters.Add(wxT("4"));
+    letters.Add(wxT("5"));
+    letters.Add(wxT("6"));
+    letters.Add(wxT("7"));
+    letters.Add(wxT("8"));
     letters.Add(wxT("9"));
-    
+
     validator.SetIncludes(letters);
-    
+
     XRCCTRL(*this, "IDT_HERO_HP", wxTextCtrl)->SetValidator(validator);
     XRCCTRL(*this, "IDT_HERO_MP", wxTextCtrl)->SetValidator(validator);
     XRCCTRL(*this, "IDT_HERO_EXP", wxTextCtrl)->SetValidator(validator);
     XRCCTRL(*this, "IDT_HERO_GOLD", wxTextCtrl)->SetValidator(validator);
     XRCCTRL(*this, "IDS_HERO_HERBS", wxSpinCtrl)->SetValidator(validator);
     XRCCTRL(*this, "IDS_HERO_KEYS", wxSpinCtrl)->SetValidator(validator);
-    
-    letters.Add(wxT("a")); letters.Add(wxT("b")); letters.Add(wxT("c"));
-    letters.Add(wxT("d")); letters.Add(wxT("e")); letters.Add(wxT("f"));
-    letters.Add(wxT("g")); letters.Add(wxT("h")); letters.Add(wxT("i"));
-    letters.Add(wxT("j")); letters.Add(wxT("k")); letters.Add(wxT("l"));
-    letters.Add(wxT("m")); letters.Add(wxT("n")); letters.Add(wxT("o"));
-    letters.Add(wxT("p")); letters.Add(wxT("q")); letters.Add(wxT("r"));
-    letters.Add(wxT("s")); letters.Add(wxT("t")); letters.Add(wxT("u"));
-    letters.Add(wxT("v")); letters.Add(wxT("w")); letters.Add(wxT("x"));
-    letters.Add(wxT("y")); letters.Add(wxT("z")); letters.Add(wxT("A"));
-    letters.Add(wxT("B")); letters.Add(wxT("C")); letters.Add(wxT("D"));
-    letters.Add(wxT("E")); letters.Add(wxT("F")); letters.Add(wxT("G"));
-    letters.Add(wxT("H")); letters.Add(wxT("I")); letters.Add(wxT("J"));
-    letters.Add(wxT("K")); letters.Add(wxT("L")); letters.Add(wxT("M"));
-    letters.Add(wxT("N")); letters.Add(wxT("O")); letters.Add(wxT("P"));
-    letters.Add(wxT("Q")); letters.Add(wxT("R")); letters.Add(wxT("S"));
-    letters.Add(wxT("T")); letters.Add(wxT("U")); letters.Add(wxT("V"));
-    letters.Add(wxT("W")); letters.Add(wxT("X")); letters.Add(wxT("Y"));
-    letters.Add(wxT("Z")); letters.Add(wxT("-")); letters.Add(wxT("'"));
-    letters.Add(wxT("!")); letters.Add(wxT("?")); letters.Add(wxT("("));
-    letters.Add(wxT(")")); letters.Add(wxT(" ")); letters.Add(wxT(","));
+
+    letters.Add(wxT("a"));
+    letters.Add(wxT("b"));
+    letters.Add(wxT("c"));
+    letters.Add(wxT("d"));
+    letters.Add(wxT("e"));
+    letters.Add(wxT("f"));
+    letters.Add(wxT("g"));
+    letters.Add(wxT("h"));
+    letters.Add(wxT("i"));
+    letters.Add(wxT("j"));
+    letters.Add(wxT("k"));
+    letters.Add(wxT("l"));
+    letters.Add(wxT("m"));
+    letters.Add(wxT("n"));
+    letters.Add(wxT("o"));
+    letters.Add(wxT("p"));
+    letters.Add(wxT("q"));
+    letters.Add(wxT("r"));
+    letters.Add(wxT("s"));
+    letters.Add(wxT("t"));
+    letters.Add(wxT("u"));
+    letters.Add(wxT("v"));
+    letters.Add(wxT("w"));
+    letters.Add(wxT("x"));
+    letters.Add(wxT("y"));
+    letters.Add(wxT("z"));
+    letters.Add(wxT("A"));
+    letters.Add(wxT("B"));
+    letters.Add(wxT("C"));
+    letters.Add(wxT("D"));
+    letters.Add(wxT("E"));
+    letters.Add(wxT("F"));
+    letters.Add(wxT("G"));
+    letters.Add(wxT("H"));
+    letters.Add(wxT("I"));
+    letters.Add(wxT("J"));
+    letters.Add(wxT("K"));
+    letters.Add(wxT("L"));
+    letters.Add(wxT("M"));
+    letters.Add(wxT("N"));
+    letters.Add(wxT("O"));
+    letters.Add(wxT("P"));
+    letters.Add(wxT("Q"));
+    letters.Add(wxT("R"));
+    letters.Add(wxT("S"));
+    letters.Add(wxT("T"));
+    letters.Add(wxT("U"));
+    letters.Add(wxT("V"));
+    letters.Add(wxT("W"));
+    letters.Add(wxT("X"));
+    letters.Add(wxT("Y"));
+    letters.Add(wxT("Z"));
+    letters.Add(wxT("-"));
+    letters.Add(wxT("'"));
+    letters.Add(wxT("!"));
+    letters.Add(wxT("?"));
+    letters.Add(wxT("("));
+    letters.Add(wxT(")"));
+    letters.Add(wxT(" "));
+    letters.Add(wxT(","));
     letters.Add(wxT("."));
-    
+
     validator.SetIncludes(letters);
     XRCCTRL(*this, "IDT_HERO_NAME", wxTextCtrl)->SetValidator(validator);
-    
+
     // hide the notebook
     XRCCTRL(*this, "IDN_DWSRAME", wxNotebook)->Show(false);
 }
@@ -102,10 +146,10 @@ MainFrame::MainFrame() : sram(0), enableEvents(true) {
 bool MainFrame::closeSRAM() {
     if (sram) {
         if (sram->isModified()) {
-            int answer = wxMessageBox(wxT("Save file before closing?"),
-                wxT("Warning: SRAM Modified"),
+            int answer = wxMessageBox(
+                wxT("Save file before closing?"), wxT("Warning: SRAM Modified"),
                 wxYES_NO | wxCANCEL | wxICON_QUESTION, this);
-            
+
             if (answer == wxYES) {
                 if (!saveSRAM()) {
                     return false;
@@ -114,80 +158,80 @@ bool MainFrame::closeSRAM() {
                 return false;
             }
         }
-        
+
         delete sram;
         sram = 0;
     }
-    
+
     XRCCTRL(*this, "IDN_DWSRAME", wxNotebook)->Show(false);
-    
+
     return true;
 }
 
 void MainFrame::loadGame(int game) {
     wxASSERT(sram);
     wxASSERT(sram->isValid(game));
-    
+
     sram->setGame(game);
-    
+
     // don't process events generated by these changes
     enableEvents = false;
-    
+
     // hero's stats
     XRCCTRL(*this, "IDT_HERO_NAME", wxTextCtrl)->SetValue(sram->getName());
-    XRCCTRL(*this, "IDT_HERO_HP", wxTextCtrl)->
-        SetValue(wxString::Format(wxT("%u"), sram->getHP()));
-    XRCCTRL(*this, "IDT_HERO_MP", wxTextCtrl)->
-        SetValue(wxString::Format(wxT("%u"), sram->getMP()));
-    XRCCTRL(*this, "IDT_HERO_EXP", wxTextCtrl)->
-        SetValue(wxString::Format(wxT("%u"), sram->getExperience()));
-    XRCCTRL(*this, "IDT_HERO_GOLD", wxTextCtrl)->
-        SetValue(wxString::Format(wxT("%u"), sram->getGold()));
-        
+    XRCCTRL(*this, "IDT_HERO_HP", wxTextCtrl)
+        ->SetValue(wxString::Format(wxT("%u"), sram->getHP()));
+    XRCCTRL(*this, "IDT_HERO_MP", wxTextCtrl)
+        ->SetValue(wxString::Format(wxT("%u"), sram->getMP()));
+    XRCCTRL(*this, "IDT_HERO_EXP", wxTextCtrl)
+        ->SetValue(wxString::Format(wxT("%u"), sram->getExperience()));
+    XRCCTRL(*this, "IDT_HERO_GOLD", wxTextCtrl)
+        ->SetValue(wxString::Format(wxT("%u"), sram->getGold()));
+
     // hero's inventory
     XRCCTRL(*this, "IDS_HERO_HERBS", wxSpinCtrl)->SetValue(sram->getHerbs());
     XRCCTRL(*this, "IDS_HERO_KEYS", wxSpinCtrl)->SetValue(sram->getKeys());
-    
-    XRCCTRL(*this, "IDC_HERO_INVENTORY1", wxChoice)->
-        SetSelection(sram->getItem(0));
-    XRCCTRL(*this, "IDC_HERO_INVENTORY2", wxChoice)->
-        SetSelection(sram->getItem(1));
-    XRCCTRL(*this, "IDC_HERO_INVENTORY3", wxChoice)->
-        SetSelection(sram->getItem(2));
-    XRCCTRL(*this, "IDC_HERO_INVENTORY4", wxChoice)->
-        SetSelection(sram->getItem(3));
-    XRCCTRL(*this, "IDC_HERO_INVENTORY5", wxChoice)->
-        SetSelection(sram->getItem(4));
-    XRCCTRL(*this, "IDC_HERO_INVENTORY6", wxChoice)->
-        SetSelection(sram->getItem(5));
-    XRCCTRL(*this, "IDC_HERO_INVENTORY7", wxChoice)->
-        SetSelection(sram->getItem(6));
-    XRCCTRL(*this, "IDC_HERO_INVENTORY8", wxChoice)->
-        SetSelection(sram->getItem(7));
-        
+
+    XRCCTRL(*this, "IDC_HERO_INVENTORY1", wxChoice)
+        ->SetSelection(sram->getItem(0));
+    XRCCTRL(*this, "IDC_HERO_INVENTORY2", wxChoice)
+        ->SetSelection(sram->getItem(1));
+    XRCCTRL(*this, "IDC_HERO_INVENTORY3", wxChoice)
+        ->SetSelection(sram->getItem(2));
+    XRCCTRL(*this, "IDC_HERO_INVENTORY4", wxChoice)
+        ->SetSelection(sram->getItem(3));
+    XRCCTRL(*this, "IDC_HERO_INVENTORY5", wxChoice)
+        ->SetSelection(sram->getItem(4));
+    XRCCTRL(*this, "IDC_HERO_INVENTORY6", wxChoice)
+        ->SetSelection(sram->getItem(5));
+    XRCCTRL(*this, "IDC_HERO_INVENTORY7", wxChoice)
+        ->SetSelection(sram->getItem(6));
+    XRCCTRL(*this, "IDC_HERO_INVENTORY8", wxChoice)
+        ->SetSelection(sram->getItem(7));
+
     // hero's equipment
-    XRCCTRL(*this, "IDC_HERO_WEAPON", wxChoice)->
-        SetSelection(sram->getWeapon() / 0x20);
-    XRCCTRL(*this, "IDC_HERO_ARMOR", wxChoice)->
-        SetSelection(sram->getArmor() / 0x4);
-    XRCCTRL(*this, "IDC_HERO_SHIELD", wxChoice)->
-        SetSelection(sram->getShield());
-        
+    XRCCTRL(*this, "IDC_HERO_WEAPON", wxChoice)
+        ->SetSelection(sram->getWeapon() / 0x20);
+    XRCCTRL(*this, "IDC_HERO_ARMOR", wxChoice)
+        ->SetSelection(sram->getArmor() / 0x4);
+    XRCCTRL(*this, "IDC_HERO_SHIELD", wxChoice)
+        ->SetSelection(sram->getShield());
+
     XRCCTRL(*this, "IDN_DWSRAME", wxNotebook)->Show(true);
-    
+
     // quest markers
-    XRCCTRL(*this, "IDC_QUEST_LORIKSCHAMBER", wxCheckBox)->
-        SetValue(sram->getQuestMarker(DW_LORIKSCHAMBER));
-        
-    XRCCTRL(*this, "IDC_QUEST_DRAGONSSCALE", wxCheckBox)->
-        SetValue(sram->getQuestMarker(DW_USINGDRAGONSSCALE));
-    XRCCTRL(*this, "IDC_QUEST_FIGHTERSRING", wxCheckBox)->
-        SetValue(sram->getQuestMarker(DW_USINGFIGHTERSRING));
-    XRCCTRL(*this, "IDC_QUEST_CURSEDBELT", wxCheckBox)->
-        SetValue(sram->getQuestMarker(DW_USINGCURSEDBELT));
-    XRCCTRL(*this, "IDC_QUEST_DEATHNECKLACE", wxCheckBox)->
-        SetValue(sram->getQuestMarker(DW_USINGDEATHNECKLACE));
-        
+    XRCCTRL(*this, "IDC_QUEST_LORIKSCHAMBER", wxCheckBox)
+        ->SetValue(sram->getQuestMarker(DW_LORIKSCHAMBER));
+
+    XRCCTRL(*this, "IDC_QUEST_DRAGONSSCALE", wxCheckBox)
+        ->SetValue(sram->getQuestMarker(DW_USINGDRAGONSSCALE));
+    XRCCTRL(*this, "IDC_QUEST_FIGHTERSRING", wxCheckBox)
+        ->SetValue(sram->getQuestMarker(DW_USINGFIGHTERSRING));
+    XRCCTRL(*this, "IDC_QUEST_CURSEDBELT", wxCheckBox)
+        ->SetValue(sram->getQuestMarker(DW_USINGCURSEDBELT));
+    XRCCTRL(*this, "IDC_QUEST_DEATHNECKLACE", wxCheckBox)
+        ->SetValue(sram->getQuestMarker(DW_USINGDEATHNECKLACE));
+
     if (sram->getQuestMarker(DW_GWAELINONTHRONE)) {
         XRCCTRL(*this, "IDC_QUEST_GWAELIN", wxChoice)->SetSelection(2);
     } else if (sram->getQuestMarker(DW_HOLDINGGWAELIN)) {
@@ -195,19 +239,19 @@ void MainFrame::loadGame(int game) {
     } else {
         XRCCTRL(*this, "IDC_QUEST_GWAELIN", wxChoice)->SetSelection(0);
     }
-        
-    XRCCTRL(*this, "IDC_QUEST_RAINBOWBRIDGE", wxCheckBox)->
-        SetValue(sram->getQuestMarker(DW_RAINBOWBRIDGE));
-    XRCCTRL(*this, "IDC_QUEST_HIDDENSTAIRS", wxCheckBox)->
-        SetValue(sram->getQuestMarker(DW_HIDDENSTAIRS));
-        
-    XRCCTRL(*this, "IDC_QUEST_GREENDRAGON", wxCheckBox)->
-        SetValue(sram->getQuestMarker(DW_GREENDRAGONDEAD));
-    XRCCTRL(*this, "IDC_QUEST_GOLEM", wxCheckBox)->
-        SetValue(sram->getQuestMarker(DW_GOLEMDEAD));
-    XRCCTRL(*this, "IDC_QUEST_DRAGONLORD", wxCheckBox)->
-        SetValue(sram->getQuestMarker(DW_DRAGONLORDDEAD));
-        
+
+    XRCCTRL(*this, "IDC_QUEST_RAINBOWBRIDGE", wxCheckBox)
+        ->SetValue(sram->getQuestMarker(DW_RAINBOWBRIDGE));
+    XRCCTRL(*this, "IDC_QUEST_HIDDENSTAIRS", wxCheckBox)
+        ->SetValue(sram->getQuestMarker(DW_HIDDENSTAIRS));
+
+    XRCCTRL(*this, "IDC_QUEST_GREENDRAGON", wxCheckBox)
+        ->SetValue(sram->getQuestMarker(DW_GREENDRAGONDEAD));
+    XRCCTRL(*this, "IDC_QUEST_GOLEM", wxCheckBox)
+        ->SetValue(sram->getQuestMarker(DW_GOLEMDEAD));
+    XRCCTRL(*this, "IDC_QUEST_DRAGONLORD", wxCheckBox)
+        ->SetValue(sram->getQuestMarker(DW_DRAGONLORDDEAD));
+
     // now we can process events again
     enableEvents = true;
 }
@@ -221,11 +265,11 @@ void MainFrame::openSRAM(const wxString &filename) {
     if (!closeSRAM()) {
         return;
     }
-    
+
     try {
         sram = new SRAMFile(filename);
         sramFile = filename;
-        
+
         if (sram->isValid(0)) {
             GetMenuBar()->FindItem(XRCID("IDM_GAME_GAME1"))->Check(true);
             loadGame(0);
@@ -238,90 +282,89 @@ void MainFrame::openSRAM(const wxString &filename) {
         }
     } catch (InvalidSRAMFileException &e) {
         wxString error;
-        
+
         switch (e.getError()) {
-            case ISFE_FILENOTFOUND:
-                error = wxT("File Not Found");
-                break;
-            case ISFE_INVALIDSIZE:
-                error = wxT("Invalid SRAM File Size");
-                break;
-            case ISFE_NOVALIDGAMES:
-                error = wxT("No Games Exist");
-                break;
+        case ISFE_FILENOTFOUND:
+            error = wxT("File Not Found");
+            break;
+        case ISFE_INVALIDSIZE:
+            error = wxT("Invalid SRAM File Size");
+            break;
+        case ISFE_NOVALIDGAMES:
+            error = wxT("No Games Exist");
+            break;
         }
-        
-        wxMessageBox(error,
-            wxT("Error: Invalid SRAM file"),
-            wxOK | wxICON_ERROR);
+
+        wxMessageBox(error, wxT("Error: Invalid SRAM file"),
+                     wxOK | wxICON_ERROR);
     }
 }
 
 bool MainFrame::saveSRAM() {
     wxASSERT(sram);
-    
+
     if (!hasValidData()) {
         return false;
     }
-    
+
     if (!sram->save(sramFile)) {
-        wxMessageBox(wxT("Unable to save SRAM file"),
-            wxT("File I/O Error"), wxOK | wxICON_ERROR);
-        
+        wxMessageBox(wxT("Unable to save SRAM file"), wxT("File I/O Error"),
+                     wxOK | wxICON_ERROR);
+
         return false;
     }
-    
+
     return true;
 }
 
 bool MainFrame::hasValidData() {
     wxString string;
     long number = 0;
-    
+
     XRCCTRL(*this, "IDT_HERO_HP", wxTextCtrl)->GetValue().ToLong(&number);
-    
+
     if ((number < 0) || (number > 255)) {
         wxMessageBox(wxT("Hero's HP must be in the range 0-255"),
-            wxT("Invalid HP"), wxOK | wxICON_ERROR);
-        
+                     wxT("Invalid HP"), wxOK | wxICON_ERROR);
+
         return false;
     }
-    
+
     XRCCTRL(*this, "IDT_HERO_MP", wxTextCtrl)->GetValue().ToLong(&number);
-    
+
     if ((number < 0) || (number > 255)) {
         wxMessageBox(wxT("Hero's MP must be in the range 0-255"),
-            wxT("Invalid MP"), wxOK | wxICON_ERROR);
-        
+                     wxT("Invalid MP"), wxOK | wxICON_ERROR);
+
         return false;
     }
-    
+
     XRCCTRL(*this, "IDT_HERO_GOLD", wxTextCtrl)->GetValue().ToLong(&number);
-    
+
     if ((number < 0) || (number > 65535)) {
         wxMessageBox(wxT("Hero's Gold must be in the range 0-65535"),
-            wxT("Invalid Gold"), wxOK | wxICON_ERROR);
-        
+                     wxT("Invalid Gold"), wxOK | wxICON_ERROR);
+
         return false;
     }
-    
+
     XRCCTRL(*this, "IDT_HERO_EXP", wxTextCtrl)->GetValue().ToLong(&number);
-    
+
     if ((number < 0) || (number > 65535)) {
         wxMessageBox(wxT("Hero's Experience must be in the range 0-65535"),
-            wxT("Invalid Experience"), wxOK | wxICON_ERROR);
-        
+                     wxT("Invalid Experience"), wxOK | wxICON_ERROR);
+
         return false;
     }
-    
+
     // no way to validate text parts of wxSpinCtrl
-    
+
     return true;
 }
 
 void MainFrame::onArmorChange(wxCommandEvent &) {
-    sram->setArmor(static_cast<enum dw_armor>
-        (XRCCTRL(*this, "IDC_HERO_ARMOR", wxChoice)->GetSelection() * 0x4));
+    sram->setArmor(static_cast<enum dw_armor>(
+        XRCCTRL(*this, "IDC_HERO_ARMOR", wxChoice)->GetSelection() * 0x4));
 }
 
 void MainFrame::onClose(wxCloseEvent &event) {
@@ -331,7 +374,7 @@ void MainFrame::onClose(wxCloseEvent &event) {
             return;
         }
     }
-    
+
     Destroy();
 }
 
@@ -339,9 +382,9 @@ void MainFrame::onExperienceEdit(wxCommandEvent &) {
     if (!enableEvents) {
         return;
     }
-    
+
     long temp;
-    
+
     if (XRCCTRL(*this, "IDT_HERO_EXP", wxTextCtrl)->GetValue().ToLong(&temp)) {
         sram->setExperience(temp);
     }
@@ -363,18 +406,17 @@ void MainFrame::onFileOpen(wxCommandEvent &) {
     wxFileDialog dlg(this, wxT("Select a Dragon Warrior (NES) SRAM file"),
                      wxEmptyString, wxEmptyString,
                      wxT("SRAM Files (*.sav)|*.sav"), wxFD_OPEN);
-                     
+
     if (dlg.ShowModal() == wxID_OK) {
         openSRAM(dlg.GetPath());
     }
 }
 
 void MainFrame::onFileSaveAs(wxCommandEvent &) {
-    wxFileDialog dlg(this, wxT("Select a filename"),
-                     wxEmptyString, wxEmptyString,
-                     wxT("SRAM Files (*.sav)|*.sav"),
+    wxFileDialog dlg(this, wxT("Select a filename"), wxEmptyString,
+                     wxEmptyString, wxT("SRAM Files (*.sav)|*.sav"),
                      wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
-    
+
     if (dlg.ShowModal() == wxID_OK) {
         sramFile = dlg.GetPath();
         saveSRAM();
@@ -389,7 +431,7 @@ void MainFrame::onGameMenuUpdate(wxUpdateUIEvent &event) {
             event.Enable(sram->isValid(1));
         } else {
             wxASSERT(event.GetId() == XRCID("IDM_GAME_GAME3"));
-            
+
             event.Enable(sram->isValid(2));
         }
     } else {
@@ -404,7 +446,7 @@ void MainFrame::onGameSelect(wxCommandEvent &event) {
         loadGame(1);
     } else {
         wxASSERT(event.GetId() == XRCID("IDM_GAME_GAME3"));
-        
+
         loadGame(2);
     }
 }
@@ -413,9 +455,9 @@ void MainFrame::onGoldEdit(wxCommandEvent &) {
     if (!enableEvents) {
         return;
     }
-    
+
     long temp;
-    
+
     if (XRCCTRL(*this, "IDT_HERO_GOLD", wxTextCtrl)->GetValue().ToLong(&temp)) {
         sram->setGold(temp);
     }
@@ -423,37 +465,37 @@ void MainFrame::onGoldEdit(wxCommandEvent &) {
 
 void MainFrame::onGwaelinChange(wxCommandEvent &) {
     int value = XRCCTRL(*this, "IDC_QUEST_GWAELIN", wxChoice)->GetSelection();
-    
+
     switch (value) {
-        case 0:
-            sram->setQuestMarker(DW_HOLDINGGWAELIN, false);
-            sram->setQuestMarker(DW_GWAELINONTHRONE, false);
-            break;
-            
-        case 1:
-            sram->setQuestMarker(DW_HOLDINGGWAELIN, true);
-            sram->setQuestMarker(DW_GWAELINONTHRONE, false);
-            break;
-            
-        case 2:
-            sram->setQuestMarker(DW_HOLDINGGWAELIN, false);
-            sram->setQuestMarker(DW_GWAELINONTHRONE, true);
-            break;
+    case 0:
+        sram->setQuestMarker(DW_HOLDINGGWAELIN, false);
+        sram->setQuestMarker(DW_GWAELINONTHRONE, false);
+        break;
+
+    case 1:
+        sram->setQuestMarker(DW_HOLDINGGWAELIN, true);
+        sram->setQuestMarker(DW_GWAELINONTHRONE, false);
+        break;
+
+    case 2:
+        sram->setQuestMarker(DW_HOLDINGGWAELIN, false);
+        sram->setQuestMarker(DW_GWAELINONTHRONE, true);
+        break;
     }
 }
 
 void MainFrame::onHelpAbout(wxCommandEvent &) {
     wxMessageBox(wxT("dwsrame 0.91a - Dragon Warrior SRAM Editor\n")
-                 wxT("Copyright (C) 2006-2008 emuWorks\n")
-                 wxT("http://games.technoplaza.net/"),
-        wxT("About dwsrame..."), wxOK | wxICON_INFORMATION);
+                     wxT("Copyright (C) 2006-2008 emuWorks\n")
+                         wxT("http://games.technoplaza.net/"),
+                 wxT("About dwsrame..."), wxOK | wxICON_INFORMATION);
 }
 
 void MainFrame::onHerbsEdit(wxCommandEvent &) {
     if (!enableEvents) {
         return;
     }
-    
+
     sram->setHerbs(XRCCTRL(*this, "IDS_HERO_HERBS", wxSpinCtrl)->GetValue());
 }
 
@@ -461,9 +503,9 @@ void MainFrame::onHPEdit(wxCommandEvent &) {
     if (!enableEvents) {
         return;
     }
-    
+
     long temp;
-    
+
     if (XRCCTRL(*this, "IDT_HERO_HP", wxTextCtrl)->GetValue().ToLong(&temp)) {
         sram->setHP(temp);
     }
@@ -471,7 +513,7 @@ void MainFrame::onHPEdit(wxCommandEvent &) {
 
 void MainFrame::onInventoryChange(wxCommandEvent &event) {
     int item;
-    
+
     if (event.GetId() == XRCID("IDC_HERO_INVENTORY1")) {
         item = 0;
     } else if (event.GetId() == XRCID("IDC_HERO_INVENTORY2")) {
@@ -488,10 +530,10 @@ void MainFrame::onInventoryChange(wxCommandEvent &event) {
         item = 6;
     } else {
         wxASSERT(event.GetId() == XRCID("IDC_HERO_INVENTORY8"));
-        
+
         item = 7;
     }
-    
+
     sram->setItem(static_cast<enum dw_item>(event.GetSelection()), item);
 }
 
@@ -499,7 +541,7 @@ void MainFrame::onKeysEdit(wxCommandEvent &) {
     if (!enableEvents) {
         return;
     }
-    
+
     sram->setKeys(XRCCTRL(*this, "IDS_HERO_KEYS", wxSpinCtrl)->GetValue());
 }
 
@@ -507,9 +549,9 @@ void MainFrame::onMPEdit(wxCommandEvent &) {
     if (!enableEvents) {
         return;
     }
-    
+
     long temp;
-    
+
     if (XRCCTRL(*this, "IDT_HERO_MP", wxTextCtrl)->GetValue().ToLong(&temp)) {
         sram->setMP(temp);
     }
@@ -519,13 +561,13 @@ void MainFrame::onNameEdit(wxCommandEvent &) {
     if (!enableEvents) {
         return;
     }
-    
+
     sram->setName(XRCCTRL(*this, "IDT_HERO_NAME", wxTextCtrl)->GetValue());
 }
 
 void MainFrame::onQuestMarkerChange(wxCommandEvent &event) {
     enum dw_quest marker;
-    
+
     if (event.GetId() == XRCID("IDC_QUEST_LORIKSCHAMBER")) {
         marker = DW_LORIKSCHAMBER;
     } else if (event.GetId() == XRCID("IDC_QUEST_DRAGONSSCALE")) {
@@ -546,91 +588,80 @@ void MainFrame::onQuestMarkerChange(wxCommandEvent &event) {
         marker = DW_GOLEMDEAD;
     } else {
         wxASSERT(event.GetId() == XRCID("IDC_QUEST_DRAGONLORD"));
-        
+
         marker = DW_DRAGONLORDDEAD;
     }
-    
+
     sram->setQuestMarker(marker, event.IsChecked());
 }
 
 void MainFrame::onShieldChange(wxCommandEvent &) {
-    sram->setShield(static_cast<enum dw_shield>
-        (XRCCTRL(*this, "IDC_HERO_SHIELD", wxChoice)->GetSelection()));
+    sram->setShield(static_cast<enum dw_shield>(
+        XRCCTRL(*this, "IDC_HERO_SHIELD", wxChoice)->GetSelection()));
 }
 
 void MainFrame::onWeaponChange(wxCommandEvent &) {
-    sram->setWeapon(static_cast<enum dw_weapon>
-        (XRCCTRL(*this, "IDC_HERO_WEAPON", wxChoice)->GetSelection() * 0x20));
+    sram->setWeapon(static_cast<enum dw_weapon>(
+        XRCCTRL(*this, "IDC_HERO_WEAPON", wxChoice)->GetSelection() * 0x20));
 }
 
 IMPLEMENT_CLASS(MainFrame, wxFrame)
 
 BEGIN_EVENT_TABLE(MainFrame, wxFrame)
-    EVT_CHECKBOX(XRCID("IDC_QUEST_LORIKSCHAMBER"),
-        MainFrame::onQuestMarkerChange)
-    EVT_CHECKBOX(XRCID("IDC_QUEST_DRAGONSSCALE"),
-        MainFrame::onQuestMarkerChange)
-    EVT_CHECKBOX(XRCID("IDC_QUEST_FIGHTERSRING"),
-        MainFrame::onQuestMarkerChange)
-    EVT_CHECKBOX(XRCID("IDC_QUEST_CURSEDBELT"),
-        MainFrame::onQuestMarkerChange)
-    EVT_CHECKBOX(XRCID("IDC_QUEST_DEATHNECKLACE"),
-        MainFrame::onQuestMarkerChange)
-    EVT_CHECKBOX(XRCID("IDC_QUEST_RAINBOWBRIDGE"),
-        MainFrame::onQuestMarkerChange)
-    EVT_CHECKBOX(XRCID("IDC_QUEST_HIDDENSTAIRS"),
-        MainFrame::onQuestMarkerChange)
-    EVT_CHECKBOX(XRCID("IDC_QUEST_GREENDRAGON"),
-        MainFrame::onQuestMarkerChange)
-    EVT_CHECKBOX(XRCID("IDC_QUEST_GOLEM"),
-        MainFrame::onQuestMarkerChange)
-    EVT_CHECKBOX(XRCID("IDC_QUEST_DRAGONLORD"),
-        MainFrame::onQuestMarkerChange)
+EVT_CHECKBOX(XRCID("IDC_QUEST_LORIKSCHAMBER"), MainFrame::onQuestMarkerChange)
+EVT_CHECKBOX(XRCID("IDC_QUEST_DRAGONSSCALE"), MainFrame::onQuestMarkerChange)
+EVT_CHECKBOX(XRCID("IDC_QUEST_FIGHTERSRING"), MainFrame::onQuestMarkerChange)
+EVT_CHECKBOX(XRCID("IDC_QUEST_CURSEDBELT"), MainFrame::onQuestMarkerChange)
+EVT_CHECKBOX(XRCID("IDC_QUEST_DEATHNECKLACE"), MainFrame::onQuestMarkerChange)
+EVT_CHECKBOX(XRCID("IDC_QUEST_RAINBOWBRIDGE"), MainFrame::onQuestMarkerChange)
+EVT_CHECKBOX(XRCID("IDC_QUEST_HIDDENSTAIRS"), MainFrame::onQuestMarkerChange)
+EVT_CHECKBOX(XRCID("IDC_QUEST_GREENDRAGON"), MainFrame::onQuestMarkerChange)
+EVT_CHECKBOX(XRCID("IDC_QUEST_GOLEM"), MainFrame::onQuestMarkerChange)
+EVT_CHECKBOX(XRCID("IDC_QUEST_DRAGONLORD"), MainFrame::onQuestMarkerChange)
 
-    EVT_CHOICE(XRCID("IDC_HERO_INVENTORY1"), MainFrame::onInventoryChange)
-    EVT_CHOICE(XRCID("IDC_HERO_INVENTORY2"), MainFrame::onInventoryChange)
-    EVT_CHOICE(XRCID("IDC_HERO_INVENTORY3"), MainFrame::onInventoryChange)
-    EVT_CHOICE(XRCID("IDC_HERO_INVENTORY4"), MainFrame::onInventoryChange)
-    EVT_CHOICE(XRCID("IDC_HERO_INVENTORY5"), MainFrame::onInventoryChange)
-    EVT_CHOICE(XRCID("IDC_HERO_INVENTORY6"), MainFrame::onInventoryChange)
-    EVT_CHOICE(XRCID("IDC_HERO_INVENTORY7"), MainFrame::onInventoryChange)
-    EVT_CHOICE(XRCID("IDC_HERO_INVENTORY8"), MainFrame::onInventoryChange)
-    
-    EVT_CHOICE(XRCID("IDC_HERO_WEAPON"), MainFrame::onWeaponChange)
-    EVT_CHOICE(XRCID("IDC_HERO_ARMOR"), MainFrame::onArmorChange)
-    EVT_CHOICE(XRCID("IDC_HERO_SHIELD"), MainFrame::onShieldChange)
-    
-    EVT_CHOICE(XRCID("IDC_QUEST_GWAELIN"), MainFrame::onGwaelinChange)
-    
-    EVT_CLOSE(MainFrame::onClose)
+EVT_CHOICE(XRCID("IDC_HERO_INVENTORY1"), MainFrame::onInventoryChange)
+EVT_CHOICE(XRCID("IDC_HERO_INVENTORY2"), MainFrame::onInventoryChange)
+EVT_CHOICE(XRCID("IDC_HERO_INVENTORY3"), MainFrame::onInventoryChange)
+EVT_CHOICE(XRCID("IDC_HERO_INVENTORY4"), MainFrame::onInventoryChange)
+EVT_CHOICE(XRCID("IDC_HERO_INVENTORY5"), MainFrame::onInventoryChange)
+EVT_CHOICE(XRCID("IDC_HERO_INVENTORY6"), MainFrame::onInventoryChange)
+EVT_CHOICE(XRCID("IDC_HERO_INVENTORY7"), MainFrame::onInventoryChange)
+EVT_CHOICE(XRCID("IDC_HERO_INVENTORY8"), MainFrame::onInventoryChange)
 
-    EVT_MENU(wxID_OPEN, MainFrame::onFileOpen)
-    EVT_MENU(wxID_CLOSE, MainFrame::onFileClose)
-    EVT_MENU(wxID_SAVE, MainFrame::onFileSave)
-    EVT_MENU(wxID_SAVEAS, MainFrame::onFileSaveAs)
-    EVT_MENU(wxID_EXIT, MainFrame::onFileExit)
-    
-    EVT_MENU(XRCID("IDM_GAME_GAME1"), MainFrame::onGameSelect)
-    EVT_MENU(XRCID("IDM_GAME_GAME2"), MainFrame::onGameSelect)
-    EVT_MENU(XRCID("IDM_GAME_GAME3"), MainFrame::onGameSelect)
-    
-    EVT_MENU(wxID_ABOUT, MainFrame::onHelpAbout)
-    
-    EVT_TEXT(XRCID("IDT_HERO_NAME"), MainFrame::onNameEdit)
-    EVT_TEXT(XRCID("IDT_HERO_HP"), MainFrame::onHPEdit)
-    EVT_TEXT(XRCID("IDT_HERO_MP"), MainFrame::onMPEdit)
-    EVT_TEXT(XRCID("IDT_HERO_EXP"), MainFrame::onExperienceEdit)
-    EVT_TEXT(XRCID("IDT_HERO_GOLD"), MainFrame::onGoldEdit)
-    
-    EVT_TEXT(XRCID("IDS_HERO_HERBS"), MainFrame::onHerbsEdit)
-    EVT_TEXT(XRCID("IDS_HERO_KEYS"), MainFrame::onKeysEdit)
-    
-    EVT_UPDATE_UI(wxID_CLOSE, MainFrame::onFileMenuUpdate)
-    EVT_UPDATE_UI(wxID_SAVE, MainFrame::onFileMenuUpdate)
-    EVT_UPDATE_UI(wxID_SAVEAS, MainFrame::onFileMenuUpdate)
-    
-    EVT_UPDATE_UI(XRCID("IDM_GAME_GAME1"), MainFrame::onGameMenuUpdate)
-    EVT_UPDATE_UI(XRCID("IDM_GAME_GAME2"), MainFrame::onGameMenuUpdate)
-    EVT_UPDATE_UI(XRCID("IDM_GAME_GAME3"), MainFrame::onGameMenuUpdate)
+EVT_CHOICE(XRCID("IDC_HERO_WEAPON"), MainFrame::onWeaponChange)
+EVT_CHOICE(XRCID("IDC_HERO_ARMOR"), MainFrame::onArmorChange)
+EVT_CHOICE(XRCID("IDC_HERO_SHIELD"), MainFrame::onShieldChange)
+
+EVT_CHOICE(XRCID("IDC_QUEST_GWAELIN"), MainFrame::onGwaelinChange)
+
+EVT_CLOSE(MainFrame::onClose)
+
+EVT_MENU(wxID_OPEN, MainFrame::onFileOpen)
+EVT_MENU(wxID_CLOSE, MainFrame::onFileClose)
+EVT_MENU(wxID_SAVE, MainFrame::onFileSave)
+EVT_MENU(wxID_SAVEAS, MainFrame::onFileSaveAs)
+EVT_MENU(wxID_EXIT, MainFrame::onFileExit)
+
+EVT_MENU(XRCID("IDM_GAME_GAME1"), MainFrame::onGameSelect)
+EVT_MENU(XRCID("IDM_GAME_GAME2"), MainFrame::onGameSelect)
+EVT_MENU(XRCID("IDM_GAME_GAME3"), MainFrame::onGameSelect)
+
+EVT_MENU(wxID_ABOUT, MainFrame::onHelpAbout)
+
+EVT_TEXT(XRCID("IDT_HERO_NAME"), MainFrame::onNameEdit)
+EVT_TEXT(XRCID("IDT_HERO_HP"), MainFrame::onHPEdit)
+EVT_TEXT(XRCID("IDT_HERO_MP"), MainFrame::onMPEdit)
+EVT_TEXT(XRCID("IDT_HERO_EXP"), MainFrame::onExperienceEdit)
+EVT_TEXT(XRCID("IDT_HERO_GOLD"), MainFrame::onGoldEdit)
+
+EVT_TEXT(XRCID("IDS_HERO_HERBS"), MainFrame::onHerbsEdit)
+EVT_TEXT(XRCID("IDS_HERO_KEYS"), MainFrame::onKeysEdit)
+
+EVT_UPDATE_UI(wxID_CLOSE, MainFrame::onFileMenuUpdate)
+EVT_UPDATE_UI(wxID_SAVE, MainFrame::onFileMenuUpdate)
+EVT_UPDATE_UI(wxID_SAVEAS, MainFrame::onFileMenuUpdate)
+
+EVT_UPDATE_UI(XRCID("IDM_GAME_GAME1"), MainFrame::onGameMenuUpdate)
+EVT_UPDATE_UI(XRCID("IDM_GAME_GAME2"), MainFrame::onGameMenuUpdate)
+EVT_UPDATE_UI(XRCID("IDM_GAME_GAME3"), MainFrame::onGameMenuUpdate)
 END_EVENT_TABLE()
-

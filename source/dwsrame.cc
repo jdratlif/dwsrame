@@ -19,8 +19,6 @@
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: dwsrame.cc,v 1.3 2008/12/15 22:48:11 jdratlif Exp $
-
 #ifdef HAVE_CONFIG_H
     #include <config.h>
 #endif
@@ -45,13 +43,12 @@ bool dwsrameApp::OnInit() {
     // initialize the XRC resources
     wxXmlResource::Get()->InitAllHandlers();
     InitXmlResource();
-    
+
     frame = new MainFrame;
     frame->Show();
-    
+
     return true;
 }
 
 IMPLEMENT_CLASS(dwsrameApp, wxApp)
 IMPLEMENT_APP(dwsrameApp)
-

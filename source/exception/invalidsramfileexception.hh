@@ -19,8 +19,6 @@
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: invalidsramfileexception.hh,v 1.4 2008/12/15 22:48:11 jdratlif Exp $
-
 #ifndef _DWSRAME_INVALIDSRAMFILEEXCEPTION_HH_
 #define _DWSRAME_INVALIDSRAMFILEEXCEPTION_HH_
 
@@ -28,23 +26,21 @@
 
 namespace dwsrame {
     /// The possible InvalidSRAMFileException error codes
-    enum isfe_error {
-        ISFE_FILENOTFOUND, ISFE_INVALIDSIZE, ISFE_NOVALIDGAMES
-    };
-    
+    enum isfe_error { ISFE_FILENOTFOUND, ISFE_INVALIDSIZE, ISFE_NOVALIDGAMES };
+
     /// exception thrown when an invalid SRAM file is detected
     class InvalidSRAMFileException : public std::runtime_error {
-    private:
+      private:
         enum isfe_error error;
-        
-    public:
+
+      public:
         /**
          * Creates a new InvalidSRAMFileException.
          *
          * @param error The error code that triggered this exception.
          */
         InvalidSRAMFileException(enum isfe_error error);
-        
+
         /**
          * Gets the error code for this InvalidSRAMFileException.
          *
@@ -52,14 +48,14 @@ namespace dwsrame {
          */
         enum isfe_error getError() const;
     };
-    
-    inline InvalidSRAMFileException::
-        InvalidSRAMFileException(enum isfe_error error) :
-        std::runtime_error("InvalidSRAMFileException"), error(error) {}
-        
-    inline enum isfe_error InvalidSRAMFileException::getError() const
-        { return error; }
-}
+
+    inline InvalidSRAMFileException::InvalidSRAMFileException(
+        enum isfe_error error)
+        : std::runtime_error("InvalidSRAMFileException"), error(error) {}
+
+    inline enum isfe_error InvalidSRAMFileException::getError() const {
+        return error;
+    }
+} // namespace dwsrame
 
 #endif
-

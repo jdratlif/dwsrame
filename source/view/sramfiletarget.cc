@@ -18,8 +18,6 @@
  * dwsrame; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
- 
-// $Id: sramfiletarget.cc,v 1.3 2008/12/15 22:48:11 jdratlif Exp $
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
@@ -40,7 +38,6 @@ bool SRAMFileTarget::OnDropFiles(wxCoord, wxCoord, const wxArrayString &files) {
     if (files.GetCount() > 0) {
         frame->openSRAM(files[0]);
     }
-    
+
     return true;
 }
-
