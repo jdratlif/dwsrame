@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/jdratlif/wxWidgets/3.0.4/static-release/include/wx-3.0",
+                "/home/jdratlif/wxWidgets/3.0.4/static-release/lib/wx/include/gtk3-unicode-static-3.0"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
