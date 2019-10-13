@@ -1,0 +1,1 @@
+#define VERSION "@dwsrame_VERSION_MAJOR@.@dwsrame_VERSION_MINOR@"
