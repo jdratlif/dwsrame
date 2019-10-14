@@ -21,6 +21,8 @@
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
+#else
+    #define VERSION "1.0-~git"
 #endif
 
 #include <wx/wxprec.h>
@@ -485,10 +487,13 @@ void MainFrame::onGwaelinChange(wxCommandEvent &) {
 }
 
 void MainFrame::onHelpAbout(wxCommandEvent &) {
-    wxMessageBox(wxT("dwsrame 0.91a - Dragon Warrior SRAM Editor\n")
-                     wxT("Copyright (C) 2006-2008 emuWorks\n")
-                         wxT("http://games.technoplaza.net/"),
-                 wxT("About dwsrame..."), wxOK | wxICON_INFORMATION);
+    wxMessageBox(
+        wxT("dwsrame ")
+        wxT(VERSION)
+        wxT(" - Dragon Warrior SRAM Editor\n")
+        wxT("Copyright (C) 2006-2008 emuWorks\n")
+        wxT("http://games.technoplaza.net/"),
+        wxT("About dwsrame..."), wxOK | wxICON_INFORMATION);
 }
 
 void MainFrame::onHerbsEdit(wxCommandEvent &) {

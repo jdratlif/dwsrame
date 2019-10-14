@@ -5,7 +5,8 @@ cmake_minimum_required(VERSION 3.5)
 project(dwsrame VERSION 1.0)
 
 # create config file
-configure_file(config.hh.in config.hh)
+configure_file(config.h.in config.h)
+add_definitions(-DHAVE_CONFIG_H)
 
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 14)
