@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/jdratlif/git/dwsrame/build",
+  "command": "/usr/bin/c++   -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/lib/wx/include/gtk3-unicode-static-3.1 -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/include/wx-3.1 -I/home/jdratlif/git/dwsrame/build -I/home/jdratlif/git/dwsrame/source   -pthread   -Wall -Wextra -pedantic -Werror -std=gnu++14 -o CMakeFiles/dwsrame.dir/source/dwsrame.cc.o -c /home/jdratlif/git/dwsrame/source/dwsrame.cc",
+  "file": "/home/jdratlif/git/dwsrame/source/dwsrame.cc"
+},
+{
+  "directory": "/home/jdratlif/git/dwsrame/build",
+  "command": "/usr/bin/c++   -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/lib/wx/include/gtk3-unicode-static-3.1 -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/include/wx-3.1 -I/home/jdratlif/git/dwsrame/build -I/home/jdratlif/git/dwsrame/source   -pthread   -Wall -Wextra -pedantic -Werror -std=gnu++14 -o CMakeFiles/dwsrame.dir/source/exception/invalidsramfileexception.cc.o -c /home/jdratlif/git/dwsrame/source/exception/invalidsramfileexception.cc",
+  "file": "/home/jdratlif/git/dwsrame/source/exception/invalidsramfileexception.cc"
+},
+{
+  "directory": "/home/jdratlif/git/dwsrame/build",
+  "command": "/usr/bin/c++   -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/lib/wx/include/gtk3-unicode-static-3.1 -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/include/wx-3.1 -I/home/jdratlif/git/dwsrame/build -I/home/jdratlif/git/dwsrame/source   -pthread   -Wall -Wextra -pedantic -Werror -std=gnu++14 -o CMakeFiles/dwsrame.dir/source/model/sramfile.cc.o -c /home/jdratlif/git/dwsrame/source/model/sramfile.cc",
+  "file": "/home/jdratlif/git/dwsrame/source/model/sramfile.cc"
+},
+{
+  "directory": "/home/jdratlif/git/dwsrame/build",
+  "command": "/usr/bin/c++   -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/lib/wx/include/gtk3-unicode-static-3.1 -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/include/wx-3.1 -I/home/jdratlif/git/dwsrame/build -I/home/jdratlif/git/dwsrame/source   -pthread   -Wall -Wextra -pedantic -Werror -std=gnu++14 -o CMakeFiles/dwsrame.dir/source/view/mainframe.cc.o -c /home/jdratlif/git/dwsrame/source/view/mainframe.cc",
+  "file": "/home/jdratlif/git/dwsrame/source/view/mainframe.cc"
+},
+{
+  "directory": "/home/jdratlif/git/dwsrame/build",
+  "command": "/usr/bin/c++   -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/lib/wx/include/gtk3-unicode-static-3.1 -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/include/wx-3.1 -I/home/jdratlif/git/dwsrame/build -I/home/jdratlif/git/dwsrame/source   -pthread   -Wall -Wextra -pedantic -Werror -std=gnu++14 -o CMakeFiles/dwsrame.dir/source/view/sramfiletarget.cc.o -c /home/jdratlif/git/dwsrame/source/view/sramfiletarget.cc",
+  "file": "/home/jdratlif/git/dwsrame/source/view/sramfiletarget.cc"
+},
+{
+  "directory": "/home/jdratlif/git/dwsrame/build",
+  "command": "/usr/bin/c++   -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/lib/wx/include/gtk3-unicode-static-3.1 -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/include/wx-3.1 -I/home/jdratlif/git/dwsrame/build -I/home/jdratlif/git/dwsrame/source   -pthread   -Wall -Wextra -pedantic -Werror -std=gnu++14 -o CMakeFiles/dwsrame.dir/source/res/resource.cpp.o -c /home/jdratlif/git/dwsrame/source/res/resource.cpp",
+  "file": "/home/jdratlif/git/dwsrame/source/res/resource.cpp"
+}
+]
