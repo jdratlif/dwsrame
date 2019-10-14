@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
-| dwsrame 0.91a - The Dragon Warrior (NES) SRAM Editor
-| Copyright (C) 2006-2008 emuWorks (http://games.technoplaza.net/)
+| dwsrame 1.0 - The Dragon Warrior (NES) SRAM Editor
+| Copyright (C) 2006-2008,2019 emuWorks (http://games.technoplaza.net/)
 | by John Ratliff <webmaster [AT] technoplaza [DOT] net>
 --------------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@
   created by Dragon Warrior by altering the files produced by NES emulators. It
   should also work with copiers and their SRAM backups, though I've never tried
   this myself.
-  
+
   There are many save state editors for various games. The difference between a
   save state editor and an SRAM editor is that an SRAM editor edits the internal
   representation of game data, rather than an emulator specific game data save.
@@ -34,53 +34,50 @@
   NES emulators, this is a big benefit over save state editors, which work only
   with the files created by a specific emulator (and often specific version of
   that emulator).
-  
+
 --------------------------------------------------------------------------------
 | 2.0 Compilation and Installation
 --------------------------------------------------------------------------------
 
-  Binaries are available for Windows (2000 and later), Linux (requires GTK+ >=
-  2.0), and Mac OS X (Tiger or later). The source is also available if you want
-  to compile it yourself.
-  
-  To compile, you will need a modern C++ compiler and wxWidgets 2.8 or later.
-  
-  On most platforms, compiling is as easy as opening a terminal and running
-  ./configure && make. That should work on Linux, Mac OS X, and Windows with
-  mingw/msys. There are also Visual Studio project files in the vstudio
-  directory.
-  
-  For more complete compilation instructions, consult our compiling HOWTO at
-  http://games.technoplaza.net/compile.php.
-  
+  Binaries are available for Windows 10, macOS (>= 10.12 Sierra), and Linux
+  with GTK+ 3. Older versions are still on the website if you are on an older
+  system.
+
+  ** TODO: WRITE THIS SECTION **
+
 --------------------------------------------------------------------------------
 | 3.0 Using the Program
 --------------------------------------------------------------------------------
 
   To start the program, simply double-click on the dwsrame (or dwsrame.exe in
   Windows) executable. You can also start it from a terminal if you prefer.
-  
+
   Dragon Warrior was a fairly simple game and doesn't have a lot of things that
   can be edited. This means the program is fairly simple. All you need is a
   Dragon Warrior SRAM file (a file usually ending in a .sav extension). You can
   either drag this file onto dwsrame or open it from the file menu. You'll see
   a bunch of options for changing things. These should be fairly obvious to
   anyone who has played the game.
-  
+
 --------------------------------------------------------------------------------
 | 4.0 Known Bugs and Issues
 --------------------------------------------------------------------------------
 
   There are no KNOWN bugs at this time. :-)
-  
+
   I don't know of any way to validate the wxSpinCtrl's used by the Herb and Key
   edits. This means if you put some garbage in the text box like 'fgfhe', it is
   undefined what the value will end up being.
-  
+
 --------------------------------------------------------------------------------
 | 5.0 Release History
 --------------------------------------------------------------------------------
-  
+
+  Version 1.0 - Monday, October 14, 2019
+    - Switched to CMake build system
+    - Update code for wxWidgets 3.1
+    - Update code for c++14
+
   Version 0.91a - Monday, December 15, 2008
     - Updated code to compile under wxWidgets 2.8.
     - Updated Visual Studio project files for Visual Studio 2008.
@@ -103,7 +100,7 @@
     - Added validity checks (insofar as possible).
     - Added save on exit/close confirmation.
     - Added Save As and Close functionality.
-    
+
   Version 0.80 - Wednesday, January 31, 2007
     - First public beta.
     - Supports editing the first valid save game only.
@@ -115,7 +112,7 @@
   I can be contacted via email (webmaster [AT] technoplaza [DOT] net). Replace
   that as appropriate. I also have an online feedback form at
   http://www.technoplaza.net/feedback.php
-  
+
 --------------------------------------------------------------------------------
 | Thanks and Acknowledgments
 --------------------------------------------------------------------------------
@@ -123,7 +120,7 @@
   Thanks go to the Bero, Xodnizel, and everyone who ever worked on FCE, FCE
   Ultra, and FCEU SP. Without these emulators, I would never have found the
   checksum routine which enabled the entire program.
-  
+
   Thanks also go out to the entire wxWidgets team for creating a free
   cross-platform GUI API that lets me build programs on Windows, Linux, and
   Mac OS X without Java.
@@ -132,11 +129,10 @@
 | 8.0 Legal Information
 --------------------------------------------------------------------------------
 
-  This program is Copyright (C) 2006-2008 emuWorks
+  This program is Copyright (C) 2006-2008,2019 emuWorks
   (http://games.technoplaza.net/). It is licensed under the GNU General Public
   License, which is included with this program in the docs directory in the file
   license.txt.
-  
+
   For more information, please consult GNU at http://www.gnu.org/, or the Free
   Software Foundation at http://www.fsf.org/.
-
