@@ -31,7 +31,7 @@ namespace dwsrame {
     /// exception thrown when an invalid SRAM file is detected
     class InvalidSRAMFileException : public std::runtime_error {
       private:
-        enum isfe_error error;
+        isfe_error error;
 
       public:
         /**
@@ -39,21 +39,20 @@ namespace dwsrame {
          *
          * @param error The error code that triggered this exception.
          */
-        InvalidSRAMFileException(enum isfe_error error);
+        InvalidSRAMFileException(isfe_error error);
 
         /**
          * Gets the error code for this InvalidSRAMFileException.
          *
          * @return The error code.
          */
-        auto getError() const -> enum isfe_error;
+        auto getError() const -> isfe_error;
     };
 
-    inline InvalidSRAMFileException::InvalidSRAMFileException(
-        enum isfe_error error)
+    inline InvalidSRAMFileException::InvalidSRAMFileException(isfe_error error)
         : std::runtime_error("InvalidSRAMFileException"), error(error) {}
 
-    inline auto InvalidSRAMFileException::getError() const -> enum isfe_error {
+    inline auto InvalidSRAMFileException::getError() const -> isfe_error {
         return error;
     }
 } // namespace dwsrame

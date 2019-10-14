@@ -228,14 +228,14 @@ namespace dwsrame {
          *
          * @return The armor.
          */
-        auto getArmor() const -> enum dw_armor;
+        auto getArmor() const -> dw_armor;
 
         /**
          * Sets the hero's armor.
          *
          * @param armor The new armor.
          */
-        void setArmor(enum dw_armor armor);
+        void setArmor(dw_armor armor);
 
         /**
          * Gets the hero's experience.
@@ -314,7 +314,7 @@ namespace dwsrame {
          *
          * @return The item.
          */
-        auto getItem(int number) const -> enum dw_item;
+        auto getItem(int number) const -> dw_item;
 
         /**
          * Sets one of the hero's items.
@@ -380,7 +380,7 @@ namespace dwsrame {
          *
          * @return true if the quest marker is set, false otherwise.
          */
-        auto getQuestMarker(enum dw_quest marker) const -> bool;
+        auto getQuestMarker(dw_quest marker) const -> bool;
 
         /**
          * Sets one of the quest markers.
@@ -388,14 +388,14 @@ namespace dwsrame {
          * @param marker The quest marker to set.
          * @param set true to set, false to clear.
          */
-        void setQuestMarker(enum dw_quest marker, bool set = true);
+        void setQuestMarker(dw_quest marker, bool set = true);
 
         /**
          * Gets the hero's shield.
          *
          * @return The shield.
          */
-        auto getShield() const -> enum dw_shield;
+        auto getShield() const -> dw_shield;
 
         /**
          * Sets the hero's shield.
@@ -418,18 +418,18 @@ namespace dwsrame {
          *
          * @return The weapon.
          */
-        auto getWeapon() const -> enum dw_weapon;
+        auto getWeapon() const -> dw_weapon;
 
         /**
          * Sets the hero's weapon.
          *
          * @param weapon The new weapon.
          */
-        void setWeapon(enum dw_weapon weapon);
+        void setWeapon(dw_weapon weapon);
     };
 
-    inline auto SRAMFile::getArmor() const -> enum dw_armor {
-        return static_cast<enum dw_armor>(offset[EQUIPMENT_OFFSET] &
+    inline auto SRAMFile::getArmor() const -> dw_armor {
+        return static_cast<dw_armor>(offset[EQUIPMENT_OFFSET] &
                                           ARMOR_MASK);
     }
 
@@ -451,13 +451,13 @@ namespace dwsrame {
         return offset[MP_OFFSET];
     }
 
-    inline auto SRAMFile::getQuestMarker(enum dw_quest marker) const -> bool {
+    inline auto SRAMFile::getQuestMarker(dw_quest marker) const -> bool {
         return offset[QUEST_OFFSETS[marker].first] &
                QUEST_OFFSETS[marker].second;
     }
 
-    inline auto SRAMFile::getShield() const -> enum dw_shield {
-        return static_cast<enum dw_shield>(offset[EQUIPMENT_OFFSET] &
+    inline auto SRAMFile::getShield() const -> dw_shield {
+        return static_cast<dw_shield>(offset[EQUIPMENT_OFFSET] &
                                            SHIELD_MASK);
     }
 
@@ -466,8 +466,8 @@ namespace dwsrame {
         return valid[game];
     }
 
-    inline auto SRAMFile::getWeapon() const -> enum dw_weapon {
-        return static_cast<enum dw_weapon>(offset[EQUIPMENT_OFFSET] &
+    inline auto SRAMFile::getWeapon() const -> dw_weapon {
+        return static_cast<dw_weapon>(offset[EQUIPMENT_OFFSET] &
                                            WEAPON_MASK);
     }
 } // namespace dwsrame
