@@ -23,9 +23,7 @@ endif()
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}")
 
 # locate and add wxWidgets
-set(wxWidgets_ROOT_DIR "C:/wxWidgets-3.1.2")
-set(wxWidgets_LIB_DIR "C:/wxWidgets-3.1.2/lib/vc_x64_lib")
-set(wxWidgets_CONFIGURATION "mswu")
+set(wxWidgets_ROOT_DIR "C:/wxWidgets/3.1.2/release-static")
 
 find_package(wxWidgets COMPONENTS core base adv html xml xrc REQUIRED)
 include( "${wxWidgets_USE_FILE}" )
