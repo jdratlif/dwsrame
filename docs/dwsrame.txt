@@ -43,7 +43,7 @@
   with GTK+ 3. Older versions are still on the website if you are on an older
   system.
 
-  ** TODO: WRITE THIS SECTION **
+  A compiling guide can be found at http://code.technoplaza.net/compile.html.
 
 --------------------------------------------------------------------------------
 | 3.0 Using the Program
