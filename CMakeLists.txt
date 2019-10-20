@@ -4,6 +4,9 @@ cmake_minimum_required(VERSION 3.5)
 # set the project name and version
 project(dwsrame VERSION 1.0)
 
+# only make release builds
+set(CMAKE_CONFIGURATION_TYPES "Release")
+
 # create config file
 configure_file(config.h.in config.h)
 add_definitions(-DHAVE_CONFIG_H)
@@ -14,7 +17,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # enable compiler warnings
 if(MSVC)
-  add_compile_options(/W3 /WX)
+  add_compile_options(/W4 /WX /wd4458)
 else()
   add_compile_options(-Wall -Wextra -pedantic -Werror)
 endif()
