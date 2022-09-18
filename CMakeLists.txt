@@ -7,12 +7,15 @@ project(dwsrame VERSION 1.0)
 # only make release builds
 set(CMAKE_CONFIGURATION_TYPES "Release")
 
+# build compile_commands.json
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # create config file
 configure_file(config.h.in config.h)
 add_definitions(-DHAVE_CONFIG_H)
 
 # specify the C++ standard
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # enable compiler warnings
