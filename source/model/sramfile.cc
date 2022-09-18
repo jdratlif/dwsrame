@@ -132,40 +132,62 @@ SRAMFile::SRAMFile(const wxString &filename) : modified(false) {
 auto SRAMFile::checksum(int game) const -> wxUint16 {
     wxASSERT((game >= 0) && (game < 3));
 
-    unsigned char cl = 0x1D, ch = 0x1D, carry = 0;
-    unsigned char al, bl, temp;
+    // registers
+    unsigned char a;
 
-    for (int i = 0x1D; i >= 0; --i) {
-        al = sram[GAME_OFFSET + (game * GAME_SIZE) + i];
+    // working sram byte at $003C
+    unsigned char data;
 
-        for (int j = 8; j > 0; --j) {
-            bl = al ^ ch;
+    // carry flag
+    bool carry = false;
 
-            // asl cl
-            carry = (cl & 0x80) ? 1 : 0;
-            cl <<= 1;
+    // LDY #$1D
+    // STY $0094 (first)
+    // STY $0095 (second)
+    std::pair<unsigned char, unsigned char> checksum(0x1d, 0x1d);
 
-            // rol ch
-            temp  = (ch & 0x80) ? 1 : 0;
-            ch    = (ch << 1) | carry;
-            carry = temp;
+    // DEY
+    // BPL $FBF5
+    for (int y = 0x1d; y >= 0; --y) {
+        // LDA ($22),Y
+        // STA $003C (data)
+        data = sram[GAME_OFFSET + (game * GAME_SIZE) + y];
 
-            // asl al
-            carry = (al & 0x80) ? 1 : 0;
-            al <<= 1;
+        // y is shadowed here to match the assembly
+        // LDY #$08
 
-            // asl bl
-            carry = (bl & 0x80) ? 1 : 0;
-            bl <<= 1;
+        // DEY
+        // BNE $FC2E
+        for (int y = 8; y > 0; --y) {
+            // LDA $0095 (checksum.second)
+            // EOR $003C (data)
+            a = checksum.second ^ data;
 
+            // ASL $0094 (checksum.first)
+            carry = (checksum.first & 0x80) != 0;
+            checksum.first <<= 1;
+
+            // ROL $0095
+            // ignore the carry -- we don't need it
+            checksum.second = (checksum.second << 1) | (carry ? 1 : 0);
+
+            // ASL $003C (data)
+            // ignore the carry -- we don't need it
+            data <<= 1;
+
+            // ASL
+            // ignore the operation -- we only need the carry
+            carry = (a & 0x80) != 0;
+
+            // BCC $FC47
             if (carry) {
-                cl ^= 0x21;
-                ch ^= 0x10;
+                checksum.first ^= 0x21;
+                checksum.second ^= 0x10;
             }
         }
     }
 
-    return (cl | (ch << 8));
+    return checksum.first | (checksum.second << 8);
 }
 
 auto SRAMFile::fromASCII(char asciiChar) const -> char {
