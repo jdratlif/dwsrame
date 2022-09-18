@@ -52,6 +52,6 @@ namespace dwsrame {
     };
 
     inline SRAMFileTarget::SRAMFileTarget(MainFrame *frame) : frame(frame) {}
-} // namespace dwsrame
+}  // namespace dwsrame
 
 #endif

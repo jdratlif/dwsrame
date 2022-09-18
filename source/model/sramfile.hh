@@ -88,12 +88,12 @@ namespace dwsrame {
     /// the armors
     enum dw_armor {
         DW_NOARMOR,
-        DW_CLOTHES = 0x4,
-        DW_LEATHERARMOR = 0x8,
-        DW_CHAINMAIL = 0xC,
-        DW_HALFPLATE = 0x10,
-        DW_FULLPLATE = 0x14,
-        DW_MAGICARMOR = 0x18,
+        DW_CLOTHES       = 0x4,
+        DW_LEATHERARMOR  = 0x8,
+        DW_CHAINMAIL     = 0xC,
+        DW_HALFPLATE     = 0x10,
+        DW_FULLPLATE     = 0x14,
+        DW_MAGICARMOR    = 0x18,
         DW_ERDRICKSARMOR = 0x1C
     };
 
@@ -143,22 +143,22 @@ namespace dwsrame {
     /// the weapons
     enum dw_weapon {
         DW_NOWEAPON,
-        DW_BAMBOOPOLE = 0x20,
-        DW_CLUB = 0x40,
-        DW_COPPERSWORD = 0x60,
-        DW_HANDAXE = 0x80,
-        DW_BROADSWORD = 0xA0,
-        DW_FLAMESWORD = 0xC0,
+        DW_BAMBOOPOLE    = 0x20,
+        DW_CLUB          = 0x40,
+        DW_COPPERSWORD   = 0x60,
+        DW_HANDAXE       = 0x80,
+        DW_BROADSWORD    = 0xA0,
+        DW_FLAMESWORD    = 0xC0,
         DW_ERDRICKSSWORD = 0xE0
     };
 
     /// class to interface with an SRAM file
     class SRAMFile {
       private:
-        int game;
-        char sram[SRAM_SIZE];
+        int            game;
+        char           sram[SRAM_SIZE];
         unsigned char *offset;
-        bool valid[3], modified;
+        bool           valid[3], modified;
 
         /// the various quest offsets
         static const std::pair<int, int> QUEST_OFFSETS[];
@@ -429,11 +429,12 @@ namespace dwsrame {
     };
 
     inline auto SRAMFile::getArmor() const -> dw_armor {
-        return static_cast<dw_armor>(offset[EQUIPMENT_OFFSET] &
-                                          ARMOR_MASK);
+        return static_cast<dw_armor>(offset[EQUIPMENT_OFFSET] & ARMOR_MASK);
     }
 
-    inline auto SRAMFile::getGame() const -> int { return game; }
+    inline auto SRAMFile::getGame() const -> int {
+        return game;
+    }
 
     inline auto SRAMFile::getHerbs() const -> int {
         return offset[HERBS_OFFSET];
@@ -443,22 +444,25 @@ namespace dwsrame {
         return offset[HP_OFFSET];
     }
 
-    inline auto SRAMFile::getKeys() const -> int { return offset[KEYS_OFFSET]; }
+    inline auto SRAMFile::getKeys() const -> int {
+        return offset[KEYS_OFFSET];
+    }
 
-    inline auto SRAMFile::isModified() const -> bool { return modified; }
+    inline auto SRAMFile::isModified() const -> bool {
+        return modified;
+    }
 
     inline auto SRAMFile::getMP() const -> unsigned int {
         return offset[MP_OFFSET];
     }
 
     inline auto SRAMFile::getQuestMarker(dw_quest marker) const -> bool {
-        return offset[QUEST_OFFSETS[marker].first] &
-               QUEST_OFFSETS[marker].second;
+        return offset[QUEST_OFFSETS[marker].first]
+               & QUEST_OFFSETS[marker].second;
     }
 
     inline auto SRAMFile::getShield() const -> dw_shield {
-        return static_cast<dw_shield>(offset[EQUIPMENT_OFFSET] &
-                                           SHIELD_MASK);
+        return static_cast<dw_shield>(offset[EQUIPMENT_OFFSET] & SHIELD_MASK);
     }
 
     inline auto SRAMFile::isValid(int game) const -> bool {
@@ -467,9 +471,8 @@ namespace dwsrame {
     }
 
     inline auto SRAMFile::getWeapon() const -> dw_weapon {
-        return static_cast<dw_weapon>(offset[EQUIPMENT_OFFSET] &
-                                           WEAPON_MASK);
+        return static_cast<dw_weapon>(offset[EQUIPMENT_OFFSET] & WEAPON_MASK);
     }
-} // namespace dwsrame
+}  // namespace dwsrame
 
 #endif

@@ -37,20 +37,20 @@
 using namespace dwsrame;
 
 const std::pair<int, int> SRAMFile::QUEST_OFFSETS[] = {
-    std::pair<int, int>(0xB, 0x04), // charlock stairs
-    std::pair<int, int>(0xB, 0x08), // rainbow bridge
-    std::pair<int, int>(0xB, 0x10), // using dragon's scale
-    std::pair<int, int>(0xB, 0x20), // using fighter's ring
-    std::pair<int, int>(0xB, 0x40), // using cursed belt
-    std::pair<int, int>(0xB, 0x80), // using death necklace
+    std::pair<int, int>(0xB, 0x04),  // charlock stairs
+    std::pair<int, int>(0xB, 0x08),  // rainbow bridge
+    std::pair<int, int>(0xB, 0x10),  // using dragon's scale
+    std::pair<int, int>(0xB, 0x20),  // using fighter's ring
+    std::pair<int, int>(0xB, 0x40),  // using cursed belt
+    std::pair<int, int>(0xB, 0x80),  // using death necklace
 
-    std::pair<int, int>(0xC, 0x01), // holding gwaelin
-    std::pair<int, int>(0xC, 0x02), // gwaelin on throne
-    std::pair<int, int>(0xC, 0x08), // started quest
+    std::pair<int, int>(0xC, 0x01),  // holding gwaelin
+    std::pair<int, int>(0xC, 0x02),  // gwaelin on throne
+    std::pair<int, int>(0xC, 0x08),  // started quest
 
-    std::pair<int, int>(0xD, 0x02), // golem
-    std::pair<int, int>(0xD, 0x04), // dragonlord
-    std::pair<int, int>(0xD, 0x40), // green dragon
+    std::pair<int, int>(0xD, 0x02),  // golem
+    std::pair<int, int>(0xD, 0x04),  // dragonlord
+    std::pair<int, int>(0xD, 0x40),  // green dragon
 };
 
 SRAMFile::SRAMFile(const wxString &filename) : modified(false) {
@@ -146,8 +146,8 @@ auto SRAMFile::checksum(int game) const -> wxUint16 {
             cl <<= 1;
 
             // rol ch
-            temp = (ch & 0x80) ? 1 : 0;
-            ch = (ch << 1) | carry;
+            temp  = (ch & 0x80) ? 1 : 0;
+            ch    = (ch << 1) | carry;
             carry = temp;
 
             // asl al
@@ -462,8 +462,8 @@ void SRAMFile::setGame(int game) {
     wxASSERT(isValid(game));
 
     this->game = game;
-    offset = reinterpret_cast<unsigned char *>(sram + GAME_OFFSET +
-                                               (GAME_SIZE * game));
+    offset     = reinterpret_cast<unsigned char *>(sram + GAME_OFFSET
+                                               + (GAME_SIZE * game));
 }
 
 auto SRAMFile::getGold() const -> wxUint16 {
@@ -482,17 +482,17 @@ void SRAMFile::setGold(wxUint16 gold) {
 
 void SRAMFile::setHerbs(int herbs) {
     offset[HERBS_OFFSET] = herbs;
-    modified = true;
+    modified             = true;
 }
 
 void SRAMFile::setHP(unsigned int hp) {
     offset[HP_OFFSET] = hp;
-    modified = true;
+    modified          = true;
 }
 
 auto SRAMFile::getItem(int number) const -> enum dw_item {
-    auto value = static_cast<unsigned char>(*(offset + ITEM_OFFSET +
-                                              (number / 2)));
+    auto value = static_cast<unsigned char>(*(offset + ITEM_OFFSET
+                                              + (number / 2)));
 
     if ((number % 2) == 1){value >>= 4;}
 
@@ -501,7 +501,7 @@ return static_cast<enum dw_item>(value & 0xF);
 
 void SRAMFile::setItem(enum dw_item item, int number) {
     unsigned char value = item;
-    auto *ptr =
+    auto         *ptr =
         reinterpret_cast<unsigned char *>(offset + ITEM_OFFSET + (number / 2));
 
     if ((number % 2) == 1) {
@@ -518,16 +518,16 @@ void SRAMFile::setItem(enum dw_item item, int number) {
 
 void SRAMFile::setKeys(int keys) {
     offset[KEYS_OFFSET] = keys;
-    modified = true;
+    modified            = true;
 }
 
 void SRAMFile::setMP(unsigned int mp) {
     offset[MP_OFFSET] = mp;
-    modified = true;
+    modified          = true;
 }
 
 auto SRAMFile::getName() const -> wxString {
-    wxString name;
+    wxString    name;
     const char *ptr = reinterpret_cast<const char *>(offset + NAME_OFFSET);
 
     for (int i = 0; i < 2; ++i) {
@@ -542,7 +542,7 @@ auto SRAMFile::getName() const -> wxString {
 }
 
 void SRAMFile::setName(const wxString &name) {
-    char *ptr = reinterpret_cast<char *>(offset + NAME_OFFSET);
+    char        *ptr   = reinterpret_cast<char *>(offset + NAME_OFFSET);
     unsigned int count = 0;
 
     for (int i = 0; i < 2; ++i) {

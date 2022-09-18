@@ -54,7 +54,7 @@ MainFrame::MainFrame() : sram(nullptr), enableEvents(true) {
 
     // create name validator
     wxTextValidator validator(wxFILTER_INCLUDE_CHAR_LIST);
-    wxArrayString letters;
+    wxArrayString   letters;
 
     letters.Add(wxT("0"));
     letters.Add(wxT("1"));
@@ -269,7 +269,7 @@ void MainFrame::openSRAM(const wxString &filename) {
     }
 
     try {
-        sram = new SRAMFile(filename);
+        sram     = new SRAMFile(filename);
         sramFile = filename;
 
         if (sram->isValid(0)) {
@@ -321,7 +321,7 @@ auto MainFrame::saveSRAM() -> bool {
 
 auto MainFrame::hasValidData() -> bool {
     wxString string;
-    long number = 0;
+    long     number = 0;
 
     XRCCTRL(*this, "IDT_HERO_HP", wxTextCtrl)->GetValue().ToLong(&number);
 
@@ -487,13 +487,11 @@ void MainFrame::onGwaelinChange(wxCommandEvent &) {
 }
 
 void MainFrame::onHelpAbout(wxCommandEvent &) {
-    wxMessageBox(
-        wxT("dwsrame ")
-        wxT(VERSION)
-        wxT(" - Dragon Warrior SRAM Editor\n")
-        wxT("Copyright (C) 2006-2008 emuWorks\n")
-        wxT("http://games.technoplaza.net/"),
-        wxT("About dwsrame..."), wxOK | wxICON_INFORMATION);
+    wxMessageBox(wxT("dwsrame ") wxT(VERSION)
+                     wxT(" - Dragon Warrior SRAM Editor\n")
+                         wxT("Copyright (C) 2006-2008 emuWorks\n")
+                             wxT("http://games.technoplaza.net/"),
+                 wxT("About dwsrame..."), wxOK | wxICON_INFORMATION);
 }
 
 void MainFrame::onHerbsEdit(wxCommandEvent &) {

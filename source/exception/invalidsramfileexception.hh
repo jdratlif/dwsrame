@@ -55,6 +55,6 @@ namespace dwsrame {
     inline auto InvalidSRAMFileException::getError() const -> isfe_error {
         return error;
     }
-} // namespace dwsrame
+}  // namespace dwsrame
 
 #endif

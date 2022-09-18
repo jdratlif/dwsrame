@@ -35,9 +35,9 @@ namespace dwsrame {
         friend class SRAMFileTarget;
 
       private:
-        wxString sramFile;
+        wxString  sramFile;
         SRAMFile *sram;
-        bool enableEvents;
+        bool      enableEvents;
 
         /**
          * Closes the current SRAM file.
@@ -213,11 +213,17 @@ namespace dwsrame {
         MainFrame();
     };
 
-    inline void MainFrame::onFileClose(wxCommandEvent &) { closeSRAM(); }
+    inline void MainFrame::onFileClose(wxCommandEvent &) {
+        closeSRAM();
+    }
 
-    inline void MainFrame::onFileExit(wxCommandEvent &) { Close(); }
+    inline void MainFrame::onFileExit(wxCommandEvent &) {
+        Close();
+    }
 
-    inline void MainFrame::onFileSave(wxCommandEvent &) { saveSRAM(); }
-} // namespace dwsrame
+    inline void MainFrame::onFileSave(wxCommandEvent &) {
+        saveSRAM();
+    }
+}  // namespace dwsrame
 
 #endif

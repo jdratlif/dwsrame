@@ -45,6 +45,6 @@ namespace dwsrame {
     };
 
     DECLARE_APP(dwsrameApp)
-} // namespace dwsrame
+}  // namespace dwsrame
 
 #endif
